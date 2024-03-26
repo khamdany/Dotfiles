@@ -1,0 +1,42 @@
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
+bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
+bindsym XF86MonBrightnessUp exec brightnessctl set 5%+
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+bindsym XF86Search exec bemenu-run
+
+
+bindsym control+home exec playerctl previous
+bindsym control+end exec playerctl play-pause
+bindsym control+insert exec playerctl next
+
+bindsym control+alt+delete exec swaylock -i /home/thinkpad/Pictures/images_dark/1920x1080.png
+
+bindsym --release control+alt+d exec dunstctl history-pop
+
+
+bindsym --release print exec ~/Personal/app/grimshot/grimshot --notify save screen
+bindsym --release print+c exec ~/Personal/app/grimshot/grimshot --notify copy screen
+bindsym --release print+shift+c exec ~/Personal/app/grimshot/grimshot --notify copy anything
+bindsym --release print+shift+s exec ~/Personal/app/grimshot/grimshot --notify save anything
+
+set $screenrecorder `bash $HOME/scripts/toggle-screen-recorder.sh`
+bindsym  --to-code $mod+Shift+R exec $screenrecorder
+
+    bindsym Alt+Tab focus right
+    bindsym Alt+shift+Tab focus left
+    bindsym print+Left focus left
+    bindsym print+Right focus right
+
+    bindsym $mod+q focus child    
+
+    bindsym $mod+grave scratchpad show
+
+    set $menu exec ~/.config/rofi/scripts/launcher_t4
+    bindsym $mod+d exec $menu
+bindsym control+shift+t [app_id="kitty"] scratchpad show
+bindsym control+shift+f [app_id="qalculate"] scratchpad show

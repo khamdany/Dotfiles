@@ -1,0 +1,9 @@
+export TERMINAL="foot"
+#export DISPLAY=":0"
+export INTEL_DEBUG="noccs"
+export PATH="/opt/flutter/bin:$PATH"
+export ANDROID_HOME="$HOME/Personal/program/android/android-sdk"
+export PATH="$PATH:$ANDROID_HOME/platform-tools"
+export JAVA_HOME="/usr/lib/jvm/java-17-openjdk"
+export XDG_CURRENT_DESKTOP="sway"
+export FZF_DEFAULT_COMMAND='rg --hidden --no-ignore -l ""'
