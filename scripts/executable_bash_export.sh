@@ -7,3 +7,4 @@ export PATH="$PATH:$ANDROID_HOME/platform-tools"
 export JAVA_HOME="/usr/lib/jvm/java-17-openjdk"
 export XDG_CURRENT_DESKTOP="sway"
 export FZF_DEFAULT_COMMAND='rg --hidden --no-ignore -l ""'
+export EDITOR='helix'
