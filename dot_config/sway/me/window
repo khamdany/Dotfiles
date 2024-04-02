@@ -19,3 +19,5 @@ for_window [app_id="org.kde.kdeconnect.handler"] floating enable
 for_window [app_id="blueman-manager"] floating enable
 for_window [app_id="org.kde.filelight"] floating enable
 for_window [app_id="org.kde.kdeconnect.daemon"] floating enable
+for_window [app_id="opensnitch_ui"] floating enable
+for_window [app_ad="firefox"] border none
