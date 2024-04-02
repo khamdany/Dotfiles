@@ -8,4 +8,4 @@ fi
 
 var=$1
 
-echo "for_window [app_id=\"${var}\"] floating enable" >> ~/.config/sway/me/window
+echo "for_window [app_id=\"${var}\"] floating enable" >> ~/.local/share/chezmoi/dot_config/sway/me/window
