@@ -2,3 +2,4 @@ exec /usr/lib/polkit-kde-authentication-agent-1
 exec copyq
 exec kdeconnect-indicator
 exec dunst
+exec opensnitch-ui
