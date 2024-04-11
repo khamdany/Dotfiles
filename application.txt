@@ -1,0 +1,15 @@
+kitty
+thunar
+kdeconnect
+font
+firefox
+opensnitch
+sway
+swayidle
+waybar
+dunst
+copyq
+keepassxd
+rofi
+helix
+gparted
