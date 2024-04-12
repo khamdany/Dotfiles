@@ -13,3 +13,4 @@ keepassxd
 rofi
 helix
 gparted
+wl-gammarelay-rs

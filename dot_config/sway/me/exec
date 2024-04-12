@@ -3,4 +3,4 @@ exec copyq
 exec kdeconnect-indicator
 exec dunst
 exec opensnitch-ui
-exec wl-gammarelay
+exec wl-gammarelay-rs 
