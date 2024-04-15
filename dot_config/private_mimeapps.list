@@ -1,0 +1,8 @@
+[Added Associations]
+text/plain=helix.desktop;
+inode/directory=thunar.desktop;
+application/octet-stream=helix.desktop;
+
+[Default Applications]
+text/plain=helix.desktop;
+application/octet-stream=helix.desktop
