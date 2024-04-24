@@ -58,6 +58,7 @@ ttf-roboto
 adobe-base-14-fonts
 ttf-ms-fonts
 adobe-source-sans-fonts
+coretime
 }
 
 

@@ -23,3 +23,4 @@ for_window [app_id="opensnitch_ui"] floating enable
 for_window [app_id="firefox"] border none
 for_window [class=KeePassXC] floating enable
 for_window [app_id="lxqt-policykit-agent"] floating enable
+for_window [app_id="org.cubocore.CoreTime"] floating enable
