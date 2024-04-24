@@ -1,11 +1,11 @@
 #!/bin/bash
 
 # Use command substitution to get the process ID of iwgtk
-pgrep_result=$(pgrep iwgtk)
+pgrep_result=$(pgrep nm-applet)
 
 if [ -z "$pgrep_result" ]; then
     # If iwgtk is not running, start it
-    exec iwgtk &
+    exec nm-applet
 else
     # If iwgtk is already running, kill it
     kill "$pgrep_result"

@@ -9,3 +9,7 @@ export XDG_CURRENT_DESKTOP="sway"
 export FZF_DEFAULT_COMMAND='rg --hidden --no-ignore -l ""'
 export EDITOR='helix'
 export PATH=$PATH:/usr/local/go/bin
+export QT_QPA_PLATFORMTHEME='qt5ct'
+export XDG_DATA_DIRS="/usr/local/share:/usr/share"
+export XDG_CACHE_HOME=$HOME/.cache
+export XDG_DATA_HOME=$HOME/.local/share

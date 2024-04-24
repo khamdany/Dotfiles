@@ -36,7 +36,7 @@ bindsym  --to-code $mod+Shift+R exec $screenrecorder
 
     bindsym $mod+grave scratchpad show
 
-    set $menu exec ~/.config/rofi/scripts/launcher_t4
+    set $menu exec rofi -show drun
     bindsym $mod+d exec $menu
 bindsym control+shift+t [app_id="kitty"] scratchpad show
 bindsym control+shift+f [app_id="qalculate"] scratchpad show
