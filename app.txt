@@ -11,8 +11,6 @@ waybar
 firefox
 ly
 man
-systemctl enable ly
-systemctl disable getty@tty2
 chezmoi
 dolphin
 git
@@ -40,6 +38,26 @@ thinkfan
 thinkfan-ui
 opensnitch
 font-manager
+util-linux
+procps
+iproute2
+dnsmasq
+iptables-nft
+onlyoffice
+bluez
+blueman
+slurp
+sshfs
+neofetch
+wf-recorder
+python-virtualenv
+dns-over-https
+dnsutils
+
+
+systemctl enable ly
+systemctl disable getty@tty2
+systemctl enable doh-client --now
 
 "
 sudo pacman -S --needed base-devel
@@ -59,6 +77,7 @@ adobe-base-14-fonts
 ttf-ms-fonts
 adobe-source-sans-fonts
 coretime
+linux-wifi-hotspot
 }
 
 
@@ -87,8 +106,10 @@ sqlite lib32-sqlite libxcomposite lib32-libxcomposite libxinerama lib32-libgcryp
 ncurses lib32-ncurses ocl-icd lib32-ocl-icd libxslt lib32-libxslt libva lib32-libva gtk3 \
 lib32-gtk3 gst-plugins-base-libs lib32-gst-plugins-base-libs vulkan-icd-loader lib32-vulkan-icd-loader
 
-
-
+[pip]
+virtualenv -p /usr/bin/python3 yourenv
+source yourenv/bin/activate
+pip install package-name
 
 [cargo]
 ripgrep

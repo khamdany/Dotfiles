@@ -86,11 +86,12 @@
         // "timezone": "America/New_York",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
         "format-alt": "{:%Y-%m-%d}",
-        "on-click-middle": "exec coretime"
+        "on-click-middle": "bash $HOME/scripts/coretime.sh"
     },
     "cpu": {
         "format": "{usage}% ",
-        "tooltip": false
+        "tooltip": false,
+        "on-click-middle": "exec $HOME/scripts/htop.sh"
     },
     "memory": {
         "format": "{}% "

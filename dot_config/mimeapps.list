@@ -3,8 +3,10 @@ text/plain=helix.desktop;
 inode/directory=thunar.desktop;
 application/octet-stream=helix.desktop;
 application/x-zerosize=helix.desktop;
+text/html=firefox.desktop;helix.desktop;
 
 [Default Applications]
 text/plain=helix.desktop;
 application/octet-stream=helix.desktop
 application/x-zerosize=helix.desktop
+x-scheme-handler/discord-1216669957799018608=discord-1216669957799018608.desktop
