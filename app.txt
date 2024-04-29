@@ -113,3 +113,7 @@ pip install package-name
 
 [cargo]
 ripgrep
+
+
+[qemu-kvm]
+https://gist.github.com/tatumroaquin/c6464e1ccaef40fd098a4f31db61ab22
