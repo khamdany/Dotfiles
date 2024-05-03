@@ -4,6 +4,9 @@ update_info=filepicker.upd:filepicker-remove-old-previews-entry
 [General]
 TerminalApplication=kitty
 
+[KDE]
+ShowDeleteCommand=false
+
 [KFileDialog Settings]
 Allow Expansion=false
 Automatically select filename extension=true
@@ -23,3 +26,6 @@ Sort hidden files last=false
 Sort reversed=false
 Speedbar Width=166
 View Style=DetailTree
+
+[PreviewSettings]
+MaximumRemoteSize=0

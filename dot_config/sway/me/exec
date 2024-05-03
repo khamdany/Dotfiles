@@ -1,6 +1,7 @@
-exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+exec /usr/bin/lxqt-policykit-agent
 exec copyq
 exec kdeconnect-indicator
 exec dunst
 exec opensnitch-ui
 exec wl-gammarelay-rs 
+exec kbuildsycoca6 

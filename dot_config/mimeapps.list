@@ -1,12 +1,14 @@
 [Added Associations]
-text/plain=helix.desktop;
-inode/directory=thunar.desktop;
 application/octet-stream=helix.desktop;
 application/x-zerosize=helix.desktop;
+image/png=feh-3.desktop;feh-2.desktop;
+inode/directory=kitty-open.desktop;thunar.desktop;
 text/html=firefox.desktop;helix.desktop;
+text/plain=helix-5.desktop;helix-4.desktop;helix-3.desktop;helix-2.desktop;helix.desktop;
 
 [Default Applications]
-text/plain=helix.desktop;
 application/octet-stream=helix.desktop
 application/x-zerosize=helix.desktop
+image/png=feh-3.desktop;
+text/plain=helix-5.desktop;
 x-scheme-handler/discord-1216669957799018608=discord-1216669957799018608.desktop

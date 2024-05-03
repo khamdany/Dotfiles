@@ -1,7 +1,7 @@
 {
     // "layer": "top", // Waybar at top layer
     // "position": "bottom", // Waybar position (top|bottom|left|right)
-    "height": 22, // Waybar height (to be removed for auto height)
+    // "height": 20, // Waybar height (to be removed for auto height)
     // "width": 1280, // Waybar width
     "spacing": 4, // Gaps between modules (4px)
     // Choose the order of the modules
@@ -124,8 +124,9 @@
         "format-alt": "{time} {icon}",
         // "format-good": "", // An empty format will hide the module
         // "format-full": "",
-        "format-icons": ["", "", "", "", ""]
-    },
+        "format-icons": ["", "", "", "", ""],
+        "on-click-middle": "exec $HOME/scripts/bat_not.sh"
+            },
     "battery#bat1": {
         "bat": "BAT1",
 	"states": {
@@ -139,7 +140,8 @@
         "format-alt": "{time} {icon}",
         // "format-good": "", // An empty format will hide the module
         // "format-full": "",
-        "format-icons": ["", "", "", "", ""]
+        "format-icons": ["", "", "", "", ""],
+        "on-click-middle": "exec $HOME/scripts/bat_not.sh"
     },
     "network": {
         // "interface": "wlp2*", // (Optional) To force the use of this interface

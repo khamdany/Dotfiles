@@ -8,6 +8,7 @@ bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 bindsym XF86Search exec bemenu-run
+bindsym XF86Favorites exec gio launch /usr/share/applications/com.github.hluk.copyq.desktop
 
 
 bindsym control+home exec playerctl previous
@@ -36,7 +37,7 @@ bindsym  --to-code $mod+Shift+R exec $screenrecorder
 
     bindsym $mod+grave scratchpad show
 
-    set $menu exec rofi -show drun
+    set $menu PATH=$PATH rofi -show drun
     bindsym $mod+d exec $menu
 bindsym control+shift+t [app_id="kitty"] scratchpad show
 bindsym control+shift+f [app_id="qalculate"] scratchpad show

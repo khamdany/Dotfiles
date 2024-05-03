@@ -1,6 +1,6 @@
 sway
 dunst
-rofi
+rofi-wayland
 helix
 kitty
 swayidle
@@ -21,14 +21,16 @@ noto-fonts-emoji
 noto-fonts-cjk
 bc
 qt5-base
+qt5ct
+qt6ct
 polkit
-thunar
+// thunar
 fuse
 grim
 dmenu
 ripgrep
 feh
-rofi-emoji
+
 wltype
 libreoffice
 otf-font-awesome
