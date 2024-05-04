@@ -19,6 +19,7 @@ if (( $(echo "$average < 20" | bc -l) )); then
       echo "10 blink" | sudo tee /proc/acpi/ibm/led 1> /dev/null
     fi
  else 
-   echo "0 on" | sudo tee /proc/acpi/ibm/led 1> /dev/null
-   echo "10 on" | sudo tee /proc/acpi/ibm/led 1> /dev/null
+ echo ''
+   # echo "0 on" | sudo tee /proc/acpi/ibm/led 1> /dev/null
+   # echo "10 on" | sudo tee /proc/acpi/ibm/led 1> /dev/null
 fi

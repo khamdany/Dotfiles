@@ -11,6 +11,7 @@ bindsym XF86Search exec bemenu-run
 bindsym XF86Favorites exec gio launch /usr/share/applications/com.github.hluk.copyq.desktop
 
 bindsym Scroll_Lock exec $HOME/scripts/scroll_lock.sh
+bindsym Pause exec $HOME/scripts/led.sh
 
 bindsym control+home exec playerctl previous
 bindsym control+end exec playerctl play-pause
