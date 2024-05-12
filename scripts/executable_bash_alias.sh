@@ -19,3 +19,4 @@ alias led-off='echo "0 off" | sudo tee /proc/acpi/ibm/led 1> /dev/null
       echo "10 off" | sudo tee /proc/acpi/ibm/led 1> /dev/null'
 alias led-on='echo "0 on" | sudo tee /proc/acpi/ibm/led 1> /dev/null
       echo "10 on" | sudo tee /proc/acpi/ibm/led 1> /dev/null'
+alias yz='yazi'

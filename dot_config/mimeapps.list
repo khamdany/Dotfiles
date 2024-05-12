@@ -1,5 +1,6 @@
 [Added Associations]
 application/octet-stream=helix.desktop;
+application/pdf=firefox.desktop;
 application/x-zerosize=helix.desktop;
 image/png=feh-3.desktop;feh-2.desktop;
 inode/directory=kitty-open.desktop;thunar.desktop;
@@ -8,6 +9,7 @@ text/plain=helix-5.desktop;helix-4.desktop;helix-3.desktop;helix-2.desktop;helix
 
 [Default Applications]
 application/octet-stream=helix.desktop
+application/pdf=firefox.desktop;
 application/x-zerosize=helix.desktop
 image/png=feh-3.desktop;
 text/plain=helix-5.desktop;

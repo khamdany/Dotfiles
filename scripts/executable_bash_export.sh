@@ -18,4 +18,4 @@ export XDG_SESSION_DESKTOP=SWAY
 export QT_QPA_PLATFORM=wayland
 export SDL_VIDEODRIVER=wayland
 export _JAVA_AWT_WM_NONREPARENTING=1
-export XDG_MENU_PREFIX=arch- 
+# export XDG_MENU_PREFIX=arch- 
