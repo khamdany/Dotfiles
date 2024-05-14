@@ -26,7 +26,7 @@ ueberzug_offset = [ 0, 0, 0, 0 ]
 
 [opener]
 edit = [
-	{ run = '${EDITOR:=vi} "$@"', desc = "$EDITOR", block = true, for = "unix" },
+	{ run = '${EDITOR:=helix} "$@"', desc = "Edit", block = true, for = "unix" },
 	{ run = 'code "%*"',    orphan = true, desc = "code",         for = "windows" },
 	{ run = 'code -w "%*"', block = true,  desc = "code (block)", for = "windows" },
 ]
@@ -43,24 +43,29 @@ reveal = [
 ]
 extract = [
 	{ run = 'ark -b -a "$1"', desc = "Extract here", for = "unix" },
+	{ run = 'ark "$1"', desc = "Open in Ark", for = "unix" },
 	{ run = 'unar "%1"', desc = "Extract here", for = "windows" },
 ]
 play = [
 	{ run = 'vlc "$@"', orphan = true, desc = "VLC", for = "unix" },
 	{ run = 'mpv "%1"', orphan = true, for = "windows" },
 	{ run = '''mediainfo "$1"; echo "Press enter to exit"; read _''', block = true, desc = "Show media info", for = "unix" },
+	{ run = 'kid3 "$1"', orphan = true, desc = "Edit metadata", for = "unix"},
 ]
 ruffle_run = [
-  { run = 'ruffle "$@"', desc = "Ruffle", for = "unix" },
+  { run = 'ruffle "$@" &', desc = "Ruffle", for = "unix" },
 ]
-appimage_run = [
-	{ run = 'chmod +x "$1" && "$1" &', desc = "Run appimage", for = "unix"},
+run = [
+	{ run = 'chmod +x "$1" && "$1" &', desc = "Run", for = "unix" },
+]
+archive = [
+	{ run = 'ark --add-to "$@".zip "$@"', desc = "Archive", for = "unix" },
 ]
 
 [open]
 rules = [
-	{ name = "*/", use = [ "edit", "open", "reveal" ] },
-
+	{ name = "*/", use = [ "edit", "open", "archive", "reveal" ] },
+	{ name = "*.sh", use = [ "edit", "run", "reveal"] },
 	{ mime = "text/*",          use = [ "edit", "reveal" ] },
 	{ mime = "image/*",         use = [ "open", "reveal" ] },
 	{ mime = "{audio,video}/*", use = [ "play", "reveal" ] },
@@ -72,7 +77,7 @@ rules = [
 	{ mime = "application/json", use = [ "edit", "reveal" ] },
 	{ mime = "*/javascript",     use = [ "edit", "reveal" ] },
   { name = "*.swf", use = [ "ruffle_run" ] },
-	{ name = "*.appimage", use = [ "appimage_run" ] },
+	{ name = "*.appimage", use = [ "run" ] },
 	{ mime = "*", use = [ "open", "reveal" ] },
 ]
 

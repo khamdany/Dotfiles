@@ -28,3 +28,4 @@ for_window [app_id="font-manager"] floating enable
 for_window [app_id="zenity"] floating enable
 for_window [class="Moving — Dolphin"] floating enable
 for_window [app_id="wihotspot-gui"] floating enable
+for_window [app_id="org.kde.kid3"] floating enable

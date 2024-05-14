@@ -9,7 +9,7 @@ swaylock
 pipewire
 waybar
 firefox
-ly
+greetd-tuigreet
 man
 chezmoi
 dolphin
@@ -30,7 +30,7 @@ grim
 dmenu
 ripgrep
 feh
-
+noise-suppression-for-voice
 wltype
 libreoffice
 otf-font-awesome
@@ -55,9 +55,10 @@ wf-recorder
 python-virtualenv
 dns-over-https
 dnsutils
+yazi
+exiftool
 
-
-systemctl enable ly
+// systemctl enable ly
 systemctl disable getty@tty2
 systemctl enable doh-client --now
 
@@ -119,3 +120,7 @@ ripgrep
 
 [qemu-kvm]
 https://gist.github.com/tatumroaquin/c6464e1ccaef40fd098a4f31db61ab22
+
+[something with white noise]
+https://github.com/werman/noise-suppression-for-voice#pipewire
+/usr/lib/---
