@@ -90,11 +90,11 @@
     },
     "cpu": {
         "format": "{usage}% ",
-        "tooltip": false,
-        "on-click-middle": "exec $HOME/scripts/htop.sh"
-    },
+        "tooltip": false
+        },
     "memory": {
-        "format": "{}% "
+        "format": "{}% ",
+        "on-click-middle": "bash $HOME/scripts/htop.sh"
     },
     "temperature": {
        // "thermal-zone": 2,
