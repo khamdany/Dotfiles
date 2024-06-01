@@ -9,5 +9,6 @@ PS1='[\u@\h \W]\$ '
 
 #. "$HOME/.cargo/env"
 
+eval $(dircolors ~/.dircolors)
 source $HOME/scripts/bash_alias.sh
 source $HOME/scripts/bash_export.sh
