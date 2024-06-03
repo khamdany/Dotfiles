@@ -7,7 +7,7 @@
     // Choose the order of the modules
     "modules-left": ["sway/workspaces", "sway/mode", "sway/scratchpad", "custom/media"],
     "modules-center": ["custom/recorder"],
-    "modules-right": ["idle_inhibitor", "pulseaudio", "network", "cpu", "memory", "backlight", /*"temperature",*/ "keyboard-state", "battery", "battery#bat1", "clock", "custom/dunst", "tray", "custom/battery"],
+    "modules-right": ["idle_inhibitor", "pulseaudio", "network", "cpu", "memory", "backlight", /*"temperature",*/ /*"keyboard-state",*/ "battery", "battery#bat1", "clock", "custom/scroll-lock", "custom/dunst", "tray", "custom/battery"],
     // Modules configuration
     // "sway/window"
     // "sway/workspaces": {
@@ -202,6 +202,13 @@
        "on-click-middle": "dunstctl close-all",
        "on-click-right": "dunstctl history-pop",
        "restart-interval": 1,
+    },
+    "custom/scroll-lock": {
+        "exec": "~/scripts/scroll_bar.sh",
+        "min-length": 3,
+        "restart-interval": 1,
+        "tooltip": true,
+        "tooltip-format": "Scroll Lock State"
     },
     "custom/battery": {
         "interval": 30,

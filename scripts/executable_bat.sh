@@ -11,7 +11,7 @@ state=$(upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep -oP 'state
 # echo $average
 # Check if below 20%
 if (( $(echo "$average < 20" | bc -l) )); then
-    dunstify Battery 'below 20%' 
+    dunstify Battery "Remaining $average%" 
     if [[ $state == "charging" ]]; then
        echo "0 on" | sudo tee /proc/acpi/ibm/led 1> /dev/null
        echo "10 on" | sudo tee /proc/acpi/ibm/led 1> /dev/null

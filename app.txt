@@ -57,6 +57,7 @@ dns-over-https
 dnsutils
 yazi
 exiftool
+nethogs
 
 // systemctl enable ly
 systemctl disable getty@tty2
