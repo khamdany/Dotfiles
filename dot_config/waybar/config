@@ -208,7 +208,8 @@
         "min-length": 3,
         "restart-interval": 1,
         "tooltip": true,
-        "tooltip-format": "Scroll Lock State"
+        "tooltip-format": "Scroll Lock State",
+        "on-click": "bash ~/scripts/scroll_lock.sh"
     },
     "custom/battery": {
         "interval": 30,

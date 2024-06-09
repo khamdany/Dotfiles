@@ -1,1 +1,3 @@
 theme = "onelight"
+[editor]
+true-color = true
