@@ -5,7 +5,7 @@ var=$1
 
 if [[ $var == 1080 ]]
 then
-echo "output eDP-1 Resolution 1920x1080 scale 1.15" > ~/.config/sway/me/output
+echo "output eDP-1 Resolution 1920x1080 " > ~/.config/sway/me/output
 elif [[ $var == 720 ]] 
 then
 echo "output eDP-1 mode --custom 1280x720" >  ~/.config/sway/me/output 

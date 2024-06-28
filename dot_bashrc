@@ -4,6 +4,7 @@
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
+[[ $- == *i* ]] && source .local/share/blesh/ble.sh --noattach
 
 PS1='[\u@\h \W]\$ '
 
@@ -12,3 +13,6 @@ PS1='[\u@\h \W]\$ '
 eval $(dircolors ~/.dircolors)
 source $HOME/scripts/bash_alias.sh
 source $HOME/scripts/bash_export.sh
+# eval "$(starship init bash)"
+# source ~/.local/share/blesh/ble.sh
+[[ ${BLE_VERSION-} ]] && ble-attach

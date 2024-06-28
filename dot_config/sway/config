@@ -24,7 +24,7 @@ set $term kitty
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output "*"  bg ~/Pictures/images_dark/1920x1080.png fit #000000
+output "*"  bg ~/Pictures/images_dark/blue.jpg fit #000000
 #
 # Example configuration:
 #

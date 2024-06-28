@@ -5,3 +5,4 @@ exec dunst
 exec opensnitch-ui
 exec wl-gammarelay-rs 
 exec kbuildsycoca6 
+exec fcitx5

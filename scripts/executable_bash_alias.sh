@@ -20,7 +20,6 @@ alias led-off='echo "0 off" | sudo tee /proc/acpi/ibm/led 1> /dev/null
 alias led-on='echo "0 on" | sudo tee /proc/acpi/ibm/led 1> /dev/null
       echo "10 on" | sudo tee /proc/acpi/ibm/led 1> /dev/null'
 alias yz='yazi'
-alias trunway='truncate -s 0 ~/.local/share/applications/waydroid.*.desktop'
 alias kdefile='source ~/scripts/source/kdeconnect.sh'
 alias kdefilesd='source ~/scripts/source/kdeconnectsdcard.sh'
 alias sync-music='$HOME/scripts/rsync.sh'
@@ -29,3 +28,6 @@ alias tmux='tmux -2'
 alias multipledir='$HOME/scripts/multipledir.sh'
 alias extglob='shopt -s extglob'
 alias cpr=$HOME/scripts/cp.sh
+alias lsd='ls -ashx --group-directories-first'
+alias m3u8-downloader='$HOME/scripts/m3u8-downloader.sh'
+alias waydroid-desktop='$HOME/scripts/waydroid-desktop.sh'

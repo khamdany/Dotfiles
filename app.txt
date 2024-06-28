@@ -1,4 +1,5 @@
 sway
+{paru first then change to swayfx}
 dunst
 rofi-wayland
 helix
@@ -58,6 +59,7 @@ dnsutils
 yazi
 exiftool
 nethogs
+fzf
 
 // systemctl enable ly
 systemctl disable getty@tty2
@@ -125,3 +127,6 @@ https://gist.github.com/tatumroaquin/c6464e1ccaef40fd098a4f31db61ab22
 [something with white noise]
 https://github.com/werman/noise-suppression-for-voice#pipewire
 /usr/lib/---
+
+[m3u8 downloader]
+https://github.com/williamchanrico/m3u8-download
