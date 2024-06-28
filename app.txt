@@ -1,5 +1,4 @@
 sway
-{paru first then change to swayfx}
 dunst
 rofi-wayland
 helix
