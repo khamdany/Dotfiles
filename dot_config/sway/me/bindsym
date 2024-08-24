@@ -39,7 +39,7 @@ bindsym  --to-code $mod+Shift+R exec $screenrecorder
 
     bindsym $mod+grave scratchpad show
 
-    set $menu rofi -show drun > ~/rofi.log 2>&1
+    set $menu rofi -show drun \\> ~/rofi.log 2>&1
     bindsym $mod+d exec $menu
     bindsym control+shift+t [app_id="kitty"] scratchpad show
 bindsym control+shift+f [app_id="qalculate"] scratchpad show
@@ -50,3 +50,5 @@ bindsym $mod+Control+0          exec busctl --user set-property rs.wl-gammarelay
 bindsym $mod+Control+Underscore exec busctl --user -- call rs.wl-gammarelay / rs.wl.gammarelay UpdateBrightness d -0.02
 bindsym $mod+Control+Plus       exec busctl --user -- call rs.wl-gammarelay / rs.wl.gammarelay UpdateBrightness d +0.02
 bindsym Control+Shift+Space     exec $HOME/scripts/im.sh
+bindsym Sys_Req exec ydotool key 127:1 127:0
+bindsym print+k exec ydotool key 127:1 127:0

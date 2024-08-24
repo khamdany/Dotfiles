@@ -37,8 +37,3 @@ input type:keyboard {
 }
 #bindsym $mod+alt+0 input type:keyboard xkb_switch_layout next
 
-titlebar_separator disable
-corner_radius 0
-# default_dim_inactive 0.5
-blur enable
-layer_effects "waybar" blur enable; shadows enable; corner_radius 6

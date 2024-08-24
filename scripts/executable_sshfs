@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+SSHFS_BIN="/usr/bin/sshfs"
+
+if [[ "$1" =~ ^kdeconnect ]]; then
+    new_args=()
+    for arg in "$@"; do
+        if [[ "$arg" = "HostKeyAlgorithms=+ssh-dss\,ssh-rsa" ]]; then
+            arg="HostKeyAlgorithms=ssh-rsa"
+        elif [[ "$arg" = "PubkeyAcceptedKeyTypes=+ssh-rsa" ]]; then
+            unset "new_args[-1]"
+            continue
+        fi
+        new_args+=("$arg")
+    done
+    "$SSHFS_BIN" "${new_args[@]}"
+else
+    "$SSHFS_BIN" "$@"
+fi

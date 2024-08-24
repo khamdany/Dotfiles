@@ -67,7 +67,7 @@ configuration {
 /*	combi-display-format: "{mode} {text}";*/
 
 	/*---------- History and Sorting ----------*/
-	disable-history: true;
+	disable-history: false;
 	sorting-method: "normal";
 	max-history-size: 25;
 
