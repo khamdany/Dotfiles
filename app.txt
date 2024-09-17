@@ -59,11 +59,12 @@ yazi
 exiftool
 nethogs
 fzf
+xorg-server-xwayland
 
 // systemctl enable ly
 systemctl disable getty@tty2
 systemctl enable doh-client --now
-
+systemctl enable --now opensnitchd
 "
 sudo pacman -S --needed base-devel
 git clone https://aur.archlinux.org/paru.git

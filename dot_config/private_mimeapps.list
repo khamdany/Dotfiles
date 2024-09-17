@@ -13,6 +13,7 @@ inode/directory=kitty-open.desktop;thunar.desktop;
 text/html=firefox.desktop;helix.desktop;
 text/plain=helix-5.desktop;helix-4.desktop;helix-3.desktop;helix-2.desktop;helix.desktop;
 video/mp4=vlc.desktop;
+x-scheme-handler/tonsite=org.telegram.desktop._eed93c1cf26b8126aa3fabbeb50b4559.desktop;
 
 [Default Applications]
 application/octet-stream=helix.desktop
@@ -28,3 +29,4 @@ image/webp=sxiv-6.desktop;
 text/plain=helix-5.desktop;
 video/mp4=vlc.desktop;
 x-scheme-handler/discord-1216669957799018608=discord-1216669957799018608.desktop
+x-scheme-handler/tonsite=org.telegram.desktop._eed93c1cf26b8126aa3fabbeb50b4559.desktop

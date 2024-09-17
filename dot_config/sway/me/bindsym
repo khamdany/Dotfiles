@@ -22,8 +22,8 @@ bindsym control+alt+delete exec swaylock -i /home/thinkpad/Pictures/images_dark/
 bindsym --release control+alt+d exec dunstctl history-pop
 
 
-bindsym --release print exec ~/Personal/app/grimshot/grimshot --notify save screen
-bindsym --release print+c exec ~/Personal/app/grimshot/grimshot --notify copy screen
+bindsym --release print exec ~/Personal/app/grimshot/grimshot notify copy screen
+bindsym --release print+s exec ~/Personal/app/grimshot/grimshot --notify save screen
 bindsym --release print+shift+c exec ~/Personal/app/grimshot/grimshot --notify copy anything
 bindsym --release print+shift+s exec ~/Personal/app/grimshot/grimshot --notify save anything
 
