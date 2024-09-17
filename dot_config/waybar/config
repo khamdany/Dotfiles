@@ -175,7 +175,6 @@
         "on-click": "bash ~/scripts/pavucontrol.sh"
     },
     "custom/media": {
-        "format": "{icon} {}",
         "return-type": "json",
         "max-length": 30,
         "format-icons": {
