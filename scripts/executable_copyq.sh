@@ -1,19 +1,18 @@
 #!/bin/bash
 FILE="$HOME/scripts/.copyq_state"
 
-# Check if the state file exists and read its value, otherwise default to 0
-if [ -f "$FILE" ]; then
-    num=$(cat "$FILE")
+# Read the current state from the file or default to 0 if the file doesn't exist.
+read -r num < "$FILE" 2>/dev/null || num=0
+
+# Determine the next state and corresponding CopyQ action.
+if (( num == 0 )); then
+    next=1
+    action="show"
 else
-    num=0
+    next=0
+    action="hide"
 fi
 
-# Toggle the scroll lock and update the state
-if [ $num -eq 0 ]; then
-    copyq --start-server show
-    echo 1 > "$FILE"
-else
-    copyq --start-server hide
-    echo 0 > "$FILE"
-fi
-
+# Execute the CopyQ command and update the state file.
+copyq --start-server "$action"
+echo "$next" > "$FILE"

@@ -1,4 +1,4 @@
-export TERMINAL="foot"
+export TERMINAL="kitty"
 #export DISPLAY=":0"
 export INTEL_DEBUG="noccs"
 export PATH="/opt/flutter/bin:$PATH"

@@ -81,8 +81,8 @@
     "tray": {
         // "icon-size": 21,
         "spacing": 10
-    },
-    "clock": {
+   },
+   "clock": {
         // "timezone": "America/New_York",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
         "format-alt": "{:%Y-%m-%d}",
@@ -153,7 +153,7 @@
         //"format-alt": "{ifname}: {ipaddr}/{cidr}",
 	"format-alt": "{essid}: {bandwidthDownBytes:>4}⇣ {bandwidthUpBytes:>4}⇡",
 	"interval": 1,
-	"on-click-middle": "bash $HOME/scripts/nm-applet.sh"
+	"on-click-middle": "bash ~/scripts/nm-applet.sh"
    },
     "pulseaudio": {
         // "scroll-step": 1, // %, can be a float

@@ -8,7 +8,7 @@ bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 bindsym XF86Search exec bemenu-run
-bindsym XF86Favorites exec $HOME/scripts/copyq.sh
+bindsym $mod+shift+v exec $HOME/scripts/copyq.sh
 
 bindsym Scroll_Lock exec $HOME/scripts/scroll_lock.sh
 bindsym Pause exec $HOME/scripts/led.sh
@@ -22,10 +22,10 @@ bindsym control+alt+delete exec swaylock -i /home/thinkpad/Pictures/images_dark/
 bindsym --release control+alt+d exec dunstctl history-pop
 
 
-bindsym --release print exec ~/Personal/app/grimshot/grimshot notify copy screen
-bindsym --release print+s exec ~/Personal/app/grimshot/grimshot --notify save screen
-bindsym --release print+shift+c exec ~/Personal/app/grimshot/grimshot --notify copy anything
-bindsym --release print+shift+s exec ~/Personal/app/grimshot/grimshot --notify save anything
+bindsym --release print exec grimshot --notify copy screen
+bindsym --release print+s exec grimshot --notify save screen
+bindsym --release print+shift+c exec grimshot --notify copy anything
+bindsym --release print+shift+s exec grimshot --notify save anything
 
 set $screenrecorder `bash $HOME/scripts/toggle-screen-recorder.sh`
 bindsym  --to-code $mod+Shift+R exec $screenrecorder

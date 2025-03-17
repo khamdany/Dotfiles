@@ -1,12 +1,7 @@
+#!/bin/bash
 
-#!/bin/bash 
-
-pid=`pgrep pavucontrol`
-status=$?
-
-if [ $status != 0 ] 
-then 
-  pavucontrol
-else 
-  pkill --signal SIGINT pavucontrol
-fi;
+if pgrep pavucontrol > /dev/null; then
+    pkill -KILL pavucontrol
+else
+    pavucontrol &
+fi
