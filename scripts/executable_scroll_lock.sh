@@ -1,6 +1,6 @@
 #!/bin/bash
 FILE="$HOME/scripts/.scroll_lock_state"
-DEVICE="2:10:TPPS/2_IBM_TrackPoint"
+DEVICE="1267:41:Elan_TrackPoint"
 
 ENABLED=●
 DISABLED=◌

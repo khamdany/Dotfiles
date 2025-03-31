@@ -43,7 +43,8 @@
         "show-empty": false,
         "format-icons": ["", ""],
         "tooltip": true,
-        "tooltip-format": "{app}: {title}"
+        "tooltip-format": "{app}: {title}",
+        "on-click": "swaymsg scratchpad show"
     },
     "mpd": {
         "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",
@@ -90,7 +91,8 @@
     },
     "cpu": {
         "format": "{usage}% ",
-        "tooltip": false
+        "tooltip": false,
+        "on-click-middle": "flatpak run net.nokyan.Resources/x86_64/stable",
         },
     "memory": {
         "format": "{}% ",
@@ -143,7 +145,7 @@
         "format-icons": ["", "", "", "", ""],
         "on-click-middle": "exec $HOME/scripts/bat_not.sh"
     },
-    "network": {
+       "network": {
         // "interface": "wlp2*", // (Optional) To force the use of this interface
        	"format-wifi": "{essid} ({signalStrength}%) ",
         "format-ethernet": "{ipaddr}/{cidr} ",
@@ -153,7 +155,8 @@
         //"format-alt": "{ifname}: {ipaddr}/{cidr}",
 	"format-alt": "{essid}: {bandwidthDownBytes:>4}⇣ {bandwidthUpBytes:>4}⇡",
 	"interval": 1,
-	"on-click-middle": "bash ~/scripts/nm-applet.sh"
+	"on-click-right": "bash ~/scripts/nm-applet.sh",
+    "on-click-middle": "exec kitty nethogs&"
    },
     "pulseaudio": {
         // "scroll-step": 1, // %, can be a float

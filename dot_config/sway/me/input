@@ -1,12 +1,12 @@
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
-input "2:7:SynPS/2_Synaptics_TouchPad"  {
+input ""1267:41:Elan_Touchpad  {
         tap enabled
         natural_scroll enabled
         pointer_accel 0.6 # set mouse sensitivity (between -1 and 1)
         dwt disabled
 }
 
-input "2:10:TPPS/2_IBM_TrackPoint" {
+input "1267:41:Elan_TrackPoint" {
         pointer_accel 0.4 # set mouse sensitivity (between -1 and 1)
 }

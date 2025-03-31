@@ -1,30 +1,39 @@
 #!/bin/bash
 
+# Get the battery percentage from upower
 bat0=$(upower -i /org/freedesktop/UPower/devices/battery_BAT0 | rg -o 'percentage:\s+(\d+)%' --replace '$1')
-bat1=$(upower -i /org/freedesktop/UPower/devices/battery_BAT1 | rg -o 'percentage:\s+(\d+)%' --replace '$1')
 
-average=$(echo "($bat0 + $bat1) / 2" | bc)
+# Check if the battery percentage is below 20
+if (( bat0 < 20 )); then
+    # Display a notification
+    dunstify Battery "Remaining $bat0%" 
+    
+    # Get the current battery state (charging or discharging)
+    state=$(upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep -oP 'state:\s+\K\w+')
 
-FILE="$HOME/scripts/.led_state"
-state=$(upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep -oP 'state:\s+\K\w+')
-# $average
-# Check if below 20%
-if (( $(echo "$average < 20" | bc -l) )); then
-    dunstify Battery "Remaining $average%" 
+    # Path to the file storing LED state
+    FILE="$HOME/scripts/.led_state"
+    
+    # Check if the state is charging and LED is enabled in the file
     if [[ $state == "charging" ]]; then
-       if [[$FILE == "1"]]; then
-         echo "0 on" | sudo tee /proc/acpi/ibm/led 1> /dev/null
-         echo "10 on" | sudo tee /proc/acpi/ibm/led 1> /dev/nulli
-       else
-         echo "0 off" | sudo tee /proc/acpi/ibm/led 1> /dev/null
-         echo "10 off" | sudo tee /proc/acpi/ibm/led 1> /dev/nulli
-       fi
+        if [[ $(cat "$FILE") == "1" ]]; then
+            # Turn LED on if the file state is "1"
+            echo "0 on" | sudo tee /proc/acpi/ibm/led 1> /dev/null
+            echo "10 on" | sudo tee /proc/acpi/ibm/led 1> /dev/null
+        else
+            # Turn LED off if the file state is not "1"
+            echo "0 off" | sudo tee /proc/acpi/ibm/led 1> /dev/null
+            echo "10 off" | sudo tee /proc/acpi/ibm/led 1> /dev/null
+        fi
     else
-      echo "0 blink" | sudo tee /proc/acpi/ibm/led 1> /dev/null
-      echo "10 blink" | sudo tee /proc/acpi/ibm/led 1> /dev/null
+        # Blink LED if not charging
+        echo "0 blink" | sudo tee /proc/acpi/ibm/led 1> /dev/null
+        echo "10 blink" | sudo tee /proc/acpi/ibm/led 1> /dev/null
     fi
- else 
-     echo ''
-     # echo "0 on" | sudo tee /proc/acpi/ibm/led 1> /dev/null
-     # echo "10 on" | sudo tee /proc/acpi/ibm/led 1> /dev/null
+else 
+    # You can add actions for when battery is above 20% if needed
+    echo ''
+    # Uncomment below to turn on LED when battery is above 20%
+    # echo "0 on" | sudo tee /proc/acpi/ibm/led 1> /dev/null
+    # echo "10 on" | sudo tee /proc/acpi/ibm/led 1> /dev/null
 fi

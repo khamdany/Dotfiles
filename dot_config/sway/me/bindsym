@@ -17,8 +17,7 @@ bindsym control+home exec playerctl previous
 bindsym control+end exec playerctl play-pause
 bindsym control+insert exec playerctl next
 
-bindsym control+alt+delete exec swaylock -i /home/thinkpad/Pictures/images_dark/1920x1080.png
-
+bindsym $mod+alt+l exec 'swaylock -f -i $HOME/Pictures/images_dark/1920x1080.png --fingerprint -c 111111 '
 bindsym --release control+alt+d exec dunstctl history-pop
 
 
@@ -52,3 +51,5 @@ bindsym $mod+Control+Plus       exec busctl --user -- call rs.wl-gammarelay / rs
 bindsym Control+Shift+Space     exec $HOME/scripts/im.sh
 bindsym Sys_Req exec ydotool key 127:1 127:0
 bindsym print+k exec ydotool key 127:1 127:0
+
+bindsym $mod+shift+e exec $HOME/scripts/power.sh

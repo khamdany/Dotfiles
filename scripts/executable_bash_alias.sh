@@ -31,3 +31,6 @@ alias cpr=$HOME/scripts/cp.sh
 alias lsd='ls -ashx --group-directories-first'
 alias m3u8-downloader='$HOME/scripts/m3u8-downloader.sh'
 alias waydroid-desktop='$HOME/scripts/waydroid-desktop.sh'
+alias hotspot='sudo $HOME/scripts/hotspot.sh --ap wlan0 access -p 123123123'
+alias resfail='faillock --user $USER --reset'
+alias clear-finger='sudo python $HOME/scripts/clear-finger.py'
