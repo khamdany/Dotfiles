@@ -76,8 +76,9 @@
         "format": "{icon}",
         "format-icons": {
             "activated": "",
-            "deactivated": ""
-        }
+            "deactivated": "",
+           },
+        "on-click-middle": "exec flatpak run io.github.sigmasd.stimulator"
     },
     "tray": {
         // "icon-size": 21,

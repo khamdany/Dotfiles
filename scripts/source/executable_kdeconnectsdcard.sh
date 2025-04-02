@@ -8,6 +8,6 @@ fi
 userdir='/run/user/1000'
 results=$(ls /run/user/1000/ | grep -E '^.{31}' | grep -v keepass)
 # Create a symbolic link to the specified directory
-ln -s "$userdir/$results/storage/3925-1B12/" "$HOME/kdefilesd"
+ln -s "$userdir/$results/storage/71E8-B068/" "$HOME/kdefilesd"
 echo "Sdcard Connected"
 cd $HOME/kdefilesd
