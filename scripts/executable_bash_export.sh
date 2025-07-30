@@ -22,3 +22,6 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
+export __GLX_VENDOR_LIBRARY_NAME=nvidia
+export GBM_BACKEND=nvidia-drm
+DXVK_CONFIG_FILE=/home/thinkpad/dxvk.conf

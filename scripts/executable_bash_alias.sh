@@ -15,10 +15,8 @@ alias cz='chezmoi'
 alias repo-fast-idn='sudo reflector -f 5 --latest 20 -c Indonesia --protocol https --sort rate --save /etc/pacman.d/mirrorlist'
 alias pipthon='source ~/Personal/pip/bin/activate'
 alias adb-connect='$HOME/scripts/adb-connect.sh'
-alias led-off='echo "0 off" | sudo tee /proc/acpi/ibm/led 1> /dev/null 
-      echo "10 off" | sudo tee /proc/acpi/ibm/led 1> /dev/null'
-alias led-on='echo "0 on" | sudo tee /proc/acpi/ibm/led 1> /dev/null
-      echo "10 on" | sudo tee /proc/acpi/ibm/led 1> /dev/null'
+alias led-off='echo "0 off" | sudo tee /proc/acpi/ibm/led 1> /dev/null; echo "10 off" | sudo tee /proc/acpi/ibm/led 1> /dev/null'
+alias led-on='echo "0 on" | sudo tee /proc/acpi/ibm/led 1> /dev/null; echo "10 on" | sudo tee /proc/acpi/ibm/led 1> /dev/null'
 alias yz='yazi'
 alias kdefile='source ~/scripts/source/kdeconnect.sh'
 alias kdefilesd='source ~/scripts/source/kdeconnectsdcard.sh'

@@ -29,3 +29,4 @@ for_window [class="Moving — Dolphin"] floating enable
 for_window [app_id="wihotspot-gui"] floating enable
 for_window [app_id="org.kde.kid3"] floating enable
 for_window [app_id="LibreWolf" title="Picture-in-Picture"] floating enable, sticky enable, move position 1433 777
+for_window [app_id="RAIL:00500158"] floating disable

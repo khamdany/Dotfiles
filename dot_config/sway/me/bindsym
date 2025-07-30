@@ -11,7 +11,7 @@ bindsym XF86Search exec bemenu-run
 bindsym $mod+shift+v exec $HOME/scripts/copyq.sh
 
 bindsym Scroll_Lock exec $HOME/scripts/scroll_lock.sh
-bindsym Pause exec $HOME/scripts/led.sh
+bindsym Pause exec sudo /usr/bin/led.sh
 
 bindsym control+home exec playerctl previous
 bindsym control+end exec playerctl play-pause
@@ -22,9 +22,9 @@ bindsym --release control+alt+d exec dunstctl history-pop
 
 
 bindsym --release print exec grimshot --notify copy screen
-bindsym --release print+s exec grimshot --notify save screen
-bindsym --release print+shift+c exec grimshot --notify copy anything
-bindsym --release print+shift+s exec grimshot --notify save anything
+bindsym --release print+s exec grimshot --notify save screen "$HOME/Pictures/Screenshot_$(date +'%Y-%m-%d_%H-%M-%S').png"
+bindsym --release print+shift+c exec grimshot --notify copy anything "$HOME/Pictures/Screenshot_$(date +'%Y-%m-%d_%H-%M-%S').png"
+bindsym --release Print+Shift+s exec grimshot --notify save anything "$HOME/Pictures/Screenshot_$(date +'%Y-%m-%d_%H-%M-%S').png"
 
 set $screenrecorder `bash $HOME/scripts/toggle-screen-recorder.sh`
 bindsym  --to-code $mod+Shift+R exec $screenrecorder
@@ -38,10 +38,12 @@ bindsym  --to-code $mod+Shift+R exec $screenrecorder
 
     bindsym $mod+grave scratchpad show
 
-    set $menu rofi -show drun \\> ~/rofi.log 2>&1
+    set $menu rofi -show drun \> ~/rofi.log 2>\&1
     bindsym $mod+d exec $menu
     bindsym control+shift+t [app_id="kitty"] scratchpad show
 bindsym control+shift+f [app_id="qalculate"] scratchpad show
+
+bindsym XF86Display exec $HOME/scripts/resolution.sh
 
 bindsym $mod+Control+Minus      exec busctl --user -- call rs.wl-gammarelay / rs.wl.gammarelay UpdateTemperature n -100
 bindsym $mod+Control+Equal      exec busctl --user -- call rs.wl-gammarelay / rs.wl.gammarelay UpdateTemperature n +100
@@ -53,3 +55,10 @@ bindsym Sys_Req exec ydotool key 127:1 127:0
 bindsym print+k exec ydotool key 127:1 127:0
 
 bindsym $mod+shift+e exec $HOME/scripts/power.sh
+
+bindgesture swipe:4:right workspace next
+bindgesture swipe:4:left workspace prev
+
+bindgesture swipe:3:left focus right
+bindgesture swipe:3:right focus left
+bindgesture swipe:3:up scratchpad show

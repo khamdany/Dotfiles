@@ -7,7 +7,7 @@
     // Choose the order of the modules
     "modules-left": ["sway/workspaces", "sway/mode", "sway/scratchpad", "custom/media"],
     "modules-center": ["custom/recorder"],
-    "modules-right": ["idle_inhibitor", "pulseaudio", "network", "cpu", "memory", "backlight", /*"temperature",*/ /*"keyboard-state",*/ "battery", "battery#bat1", "clock", "custom/scroll-lock", "custom/dunst", "tray", "custom/battery"],
+    "modules-right": ["idle_inhibitor", "pulseaudio", "network", "cpu", "memory", "backlight", /*"temperature",*/ /*"keyboard-state",*/ "battery", "battery#bat1", "clock", "custom/scroll-lock", "custom/dunst", "tray", "custom/battery", "custom/power",],
     // Modules configuration
     // "sway/window"
     // "sway/workspaces": {
@@ -216,6 +216,10 @@
     },
     "custom/battery": {
         "interval": 30,
-        "exec": "~/scripts/bat.sh"
+        "exec": "sudo /usr/bin/bat.sh"
+    },
+    "custom/power": {
+        "format": "⏻" ,
+        "on-click": "bash ~/scripts/power.sh"
     },
 }
