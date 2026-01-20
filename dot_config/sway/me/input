@@ -8,5 +8,5 @@ input ""1267:41:Elan_Touchpad  {
 }
 
 input "1267:41:Elan_TrackPoint" {
-        pointer_accel 0.4 # set mouse sensitivity (between -1 and 1)
+        pointer_accel 1 # set mouse sensitivity (between -1 and 1)
 }

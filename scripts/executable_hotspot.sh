@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION=0.7.6
+VERSION=0.8.0-unstable3
 PROGNAME="$(basename "$0")"
 
 export LC_ALL=C
@@ -33,17 +33,17 @@ Options:
                             queries to other interfaces)
     -n                      Do not provide Internet
     --ban-priv              Disallow clients to access my private network
-    
+
     -g <ip>                 This host's IPv4 address in subnet (mask is /24)
                             (example: '192.168.5.1' or '5' shortly)
     -6                      Enable IPv6 (NAT)
     --no4                   Disable IPv4 Internet (not forwarding IPv4).
                             Usually used with '-6'
-                            
-    --p6 <prefix>           Set IPv6 LAN address prefix (length 64) 
-                            (example: 'fd00:0:0:5::' or '5' shortly) 
+
+    --p6 <prefix>           Set IPv6 LAN address prefix (length 64)
+                            (example: 'fd00:0:0:5::' or '5' shortly)
                             Using this enables '-6'
-                            
+
     --dns <ip>|<port>|<ip:port>
                             DNS server's upstream DNS.
                             Use ',' to seperate multiple servers
@@ -51,37 +51,37 @@ Options:
                             (Note IPv6 addresses need '[]' around)
     --no-dns                Do not serve DNS
     --no-dnsmasq            Disable dnsmasq server (DHCP, DNS, RA)
-    --catch-dns             Transparent DNS proxy, redirect packets(TCP/UDP) 
+    --catch-dns             Transparent DNS proxy, redirect packets(TCP/UDP)
                             whose destination port is 53 to this host
     --log-dns               Show DNS query log (dnsmasq)
     --dhcp-dns <IP1[,IP2]>|no
                             Set IPv4 DNS offered by DHCP (default: this host).
     --dhcp-dns6 <IP1[,IP2]>|no
-                            Set IPv6 DNS offered by DHCP (RA) 
+                            Set IPv6 DNS offered by DHCP (RA)
                             (default: this host)
                             (Note IPv6 addresses need '[]' around)
-                            Using both above two will enable '--no-dns' 
+                            Using both above two will enable '--no-dns'
     --hostname <name>       DNS server associate this name with this host.
                             Use '-' to read name from /etc/hostname
     -d                      DNS server will take into account /etc/hosts
-    -e <hosts_file>         DNS server will take into account additional 
+    -e <hosts_file>         DNS server will take into account additional
                             hosts file
     --dns-nocache           DNS server no cache
-    
+
     --mac <MAC>             Set MAC address
     --random-mac            Use random MAC address
- 
+
     --tp <port>             Transparent proxy,
                             redirect non-LAN TCP and UDP(not tested) traffic to
                             port. (usually used with '--dns')
-    
+
   WiFi hotspot options:
     --ap <wifi interface> <SSID>
                             Create WiFi access point
-    -p, --password <password>   
+    -p, --password <password>
                             WiFi password
     --qr                    Show WiFi QR code in terminal (need qrencode)
-    
+
     --hidden                Hide access point (not broadcast SSID)
     --no-virt               Do not create virtual interface
                             Using this you can't use same wlan interface
@@ -101,40 +101,64 @@ Options:
                             (defaults to /etc/hostapd/hostapd.accept)
     --hostapd-debug <level> 1 or 2. Passes -d or -dd to hostapd
     --isolate-clients       Disable wifi communication between clients
+    --idle-timeout <time>   Idle timeout (in seconds) to disconnect a client device
     --no-haveged            Do not run haveged automatically when needed
-    --hs20                  Enable Hotspot 2.0
+    --hs20                  (ß) Enable Hotspot 2.0
 
-    WiFi 4 (802.11n) configs:
+  WiFi 4 (802.11n) configs:
     --wifi4                 Enable IEEE 802.11n (HT)
     --req-ht                Require station HT (High Throughput) mode
     --ht-capab <HT caps>    HT capabilities (default: [HT40+])
 
-    WiFi 5 (802.11ac) configs:
+  WiFi 5 (802.11ac) configs:
     --wifi5                 Enable IEEE 802.11ac (VHT)
     --req-vht               Require station VHT (Very High Thoughtput) mode
     --vht-capab <VHT caps>  VHT capabilities
-    
+
     --vht-ch-width <index>  Index of VHT channel width:
                                 0 for 20MHz or 40MHz (default)
                                 1 for 80MHz
                                 2 for 160MHz
-                                3 for 80+80MHz (Non-contigous 160MHz)    
-    --vht-seg0-ch <channel> Channel index of VHT center frequency for primary 
+                                3 for 80+80MHz (Non-contigous 160MHz)
+    --vht-seg0-ch <channel> Channel index of VHT center frequency for primary
                             segment. Use with '--vht-ch-width'
     --vht-seg1-ch <channel> Channel index of VHT center frequency for secondary
                             (second 80MHz) segment. Use with '--vht-ch-width 3'
 
+  WiFi 6 (802.11ax) configs:
+    --wifi6                 (ß) Enable IEEE 802.11ax (HE)
+    --req-he                Require station HE (High Efficiency) mode
+
+    --he-ch-width <index>   Index of HE channel width:
+                                0 for 20MHz or 40MHz (default)
+                                1 for 80MHz
+                                2 for 160MHz
+                                3 for 80+80MHz (Non-contigous 160MHz)
+    --he-seg0-ch <channel>  Channel index of HE center frequency for primary
+                            segment. Use with '--he-ch-width'
+    --he-seg1-ch <channel>  Channel index of HE center frequency for secondary
+                            (second 80MHz) segment. Use with '--he-ch-width 3'
+    --he-su-bfe             (beta) Enable HE Single User Beamformee support
+    --he-su-bfr             (beta) Enable HE Single User Beamformer support
+    --he-mu-bfr             (beta) Enable HE Multi User Beamformer support
+    --enable-twt            (beta) (ß) Enable Peer to Peer Target Wake Time support
+
+  (ß): Requires hostapd built with specific build flags enabled
+
+
   Instance managing:
     --daemon                Run in background
+    --keep-confdir          Don't delete the temporary config dir after exit
+
     -l, --list-running      Show running instances
-    --lc, --list-clients <id|interface>     
+    --lc, --list-clients <id|interface>
                             List clients of an instance. Or list neighbors of
                             an interface, even if it isn't handled by us.
                             (passive mode)
     --stop <id>             Stop a running instance
         For <id> you can use PID or subnet interface name.
         You can get them with '--list-running'
-                
+
 Examples:
     $PROGNAME -i eth1
     $PROGNAME --ap wlan0 MyAccessPoint -p MyPassPhrase
@@ -169,39 +193,49 @@ define_global_variables(){
     DNS_NOCACHE=
     CONN_IFACE=    # which interface user choose to use to create network
     INTERNET_IFACE= # which interface to get Internet from
-    THISHOSTNAME=   # this host's name the DNS tells clients 
+    THISHOSTNAME=   # this host's name the DNS tells clients
     TP_PORT=  # transparent proxy port
     DNS=  # upstream DNS
     MAC_USE_RANDOM=0
     NEW_MACADDR=
     DAEMONIZE=0
-    
+
     # script variables
     SUBNET_IFACE=  # which interface to create network
-    SHARE_METHOD=nat 
+    SHARE_METHOD=nat
     OLD_MACADDR=
     SUBNET_NET4=
     SUBNET_NET6=
-    
+
 
     ##### wifi hotspot
     # user options
     HIDDEN=0 # hidden wifi hotspot
     WIFI_IFACE=
-    CHANNEL=default 
+    CHANNEL=default
     HOTSPOT20=0 # For enabling Hotspot 2.0
     WPA_VERSION=2
     MAC_FILTER=0
     MAC_FILTER_ACCEPT=/etc/hostapd/hostapd.accept
+    IDLETIMEOUT=300
     IEEE80211N=0
     REQUIREHT=0
     IEEE80211AC=0
     REQUIREVHT=0
+    IEEE80211AX=0
+    REQUIREHE=0
     HT_CAPAB='[HT40+]'
     VHT_CAPAB=
     VHTCHANNELWIDTH=0
     VHTSEG0CHINDEX=0
     VHTSEG1CHINDEX=0
+    HECHANNELWIDTH=0
+    HESEG0CHINDEX=0
+    HESEG1CHINDEX=0
+    HESUBFE=0
+    HESUBFR=0
+    HEMUBFR=0
+    HEP2PTWT=0
     DRIVER=nl80211
     NO_VIRT=0 # not use virtual interface
     COUNTRY=
@@ -211,14 +245,15 @@ define_global_variables(){
     USE_PSK=0
     ISOLATE_CLIENTS=0
     QR=0 # show wifi qr
-    
+
     # script variables
+    PHY=
     VWIFI_IFACE=  # virtual wifi interface name, if created
     VIRT_NAME= # name to use for virtual interface if --virt-name is used
     AP_IFACE=     # can be VWIFI_IFACE or WIFI_IFACE
     USE_IWCONFIG=0  # some device can't use iw
     #######
-    
+
     #-- to deal with info of a running instance. then will exit
     LIST_RUNNING=0
     STOP_ID=
@@ -231,6 +266,7 @@ define_global_variables(){
     NM_PID=
     FIREWALLD_PID=
     TMP_FIREWALLD_ZONE=
+    KEEP_CONFDIR=
 }
 
 parse_user_options(){
@@ -268,8 +304,6 @@ parse_user_options(){
                 SHARE_METHOD=redsocks
                 shift
                 ;;
-                
-                
             -g)
                 shift
                 GATEWAY4="$1"
@@ -298,7 +332,6 @@ parse_user_options(){
                 shift
                 MAC_USE_RANDOM=1
                 ;;
-                
             --dns)
                 shift
                 DNS="$1"
@@ -325,7 +358,7 @@ parse_user_options(){
             --catch-dns)
                 shift
                 CATCH_DNS=1
-                ;;    
+                ;;
             --log-dns)
                 shift
                 SHOW_DNS_QUERY=1
@@ -348,12 +381,10 @@ parse_user_options(){
                 shift
                 DNS_NOCACHE=1
                 ;;
-            
             --isolate-clients)
                 shift
                 ISOLATE_CLIENTS=1
                 ;;
-                
             --ap)
                 shift
                 WIFI_IFACE="$1"
@@ -370,8 +401,6 @@ parse_user_options(){
                 shift
                 QR=1
                 ;;
-                
-                
             --hidden)
                 shift
                 HIDDEN=1
@@ -385,7 +414,6 @@ parse_user_options(){
                 MAC_FILTER_ACCEPT="$1"
                 shift
                 ;;
-
             -c)
                 shift
                 CHANNEL="$1"
@@ -401,7 +429,11 @@ parse_user_options(){
                 [[ "$WPA_VERSION" == "2+1" ]] && WPA_VERSION=1+2
                 shift
                 ;;
-
+            --idle-timeout)
+                shift
+                IDLETIMEOUT="$1"
+                shift
+                ;;
             --wifi4|--ieee80211n)
                 shift
                 IEEE80211N=1
@@ -413,6 +445,14 @@ parse_user_options(){
             --wifi5|--ieee80211ac)
                 shift
                 IEEE80211AC=1
+                ;;
+            --wifi6|--ieee80211ax)
+                shift
+                IEEE80211AX=1
+                ;;
+            --req-he|--require-he)
+                shift
+                REQUIREHE=1
                 ;;
             --req-vht|--require-vht)
                 shift
@@ -443,6 +483,37 @@ parse_user_options(){
                 VHTSEG1CHINDEX="$1"
                 shift
                 ;;
+            --he-ch-width|--he-channel-width)
+                shift
+                HECHANNELWIDTH="$1"
+                shift
+                ;;
+            --he-seg0-ch|--he-seg0-channel)
+                shift
+                HESEG0CHINDEX="$1"
+                shift
+                ;;
+            --he-seg1-ch|--he-seg1-channel)
+                shift
+                HESEG1CHINDEX="$1"
+                shift
+                ;;
+            --he-su-bfe)
+                shift
+                HESUBFE=1
+                ;;
+            --he-su-bfr)
+                shift
+                HESUBFR=1
+                ;;
+            --he-mu-bfr)
+                shift
+                HEMUBFR=1
+                ;;
+            --enable-twt)
+                shift
+                HEP2PTWT=1
+                ;;
             --driver)
                 shift
                 DRIVER="$1"
@@ -457,7 +528,6 @@ parse_user_options(){
                 VIRT_NAME="$1"
                 shift
                 ;;
-
             --country)
                 shift
                 COUNTRY="$1"
@@ -488,7 +558,6 @@ parse_user_options(){
                 shift
                 USE_PSK=1
                 ;;
-
             --daemon)
                 shift
                 DAEMONIZE=1
@@ -507,7 +576,10 @@ parse_user_options(){
                 LIST_CLIENTS_ID="$1"
                 shift
                 ;;
-
+            --keep-confdir)
+                shift
+                KEEP_CONFDIR=1
+                ;;
             *)
                 echo  "Invalid parameter: $1" 1>&2
                 exit 1
@@ -530,7 +602,7 @@ sep_ip_port() {
     local PORT
     local INPUT
     INPUT="$1"
-    if (echo "$INPUT" | grep '\.' >/dev/null 2>&1) ;then  
+    if (echo "$INPUT" | grep '\.' >/dev/null 2>&1) ;then
         if (echo "$INPUT" | grep ':' >/dev/null 2>&1) ;then
             # ipv4 + port
             IP="$(echo "$INPUT" | cut -d: -f1)"
@@ -539,7 +611,7 @@ sep_ip_port() {
             # ipv4
             IP="$INPUT"
         fi
-    elif (echo "$INPUT" | grep '\]' >/dev/null 2>&1) ;then 
+    elif (echo "$INPUT" | grep '\]' >/dev/null 2>&1) ;then
         if (echo "$INPUT" | grep '\]\:' >/dev/null 2>&1) ;then
             # ipv6 + port
             IP="$(echo "$INPUT" | cut -d']' -f1 | cut -d'[' -f2)"
@@ -548,7 +620,7 @@ sep_ip_port() {
             # ipv6
             IP="$(echo "$INPUT" | cut -d']' -f1 | cut -d'[' -f2)"
         fi
-    else 
+    else
         # port
         IP='127.0.0.1'
         PORT="$INPUT"
@@ -582,7 +654,6 @@ get_interface_phy_device() { # only for wifi interface
             return 0
         fi
     done
-    echo "Failed to get phy interface" >&2
     return 1
 }
 
@@ -622,15 +693,22 @@ can_be_ap() {
 }
 
 can_transmit_to_channel() {
-    local IFACE CHANNEL_NUM CHANNEL_INFO
+    local IFACE CHANNEL_NUM CHANNEL_INFO CHANNEL_FREQ_FILTER
     IFACE=$1
     CHANNEL_NUM=$2
+    if [[ $FREQ_BAND == "2.4" ]]; then
+        CHANNEL_FREQ_FILTER="(24)"
+    elif [[ $FREQ_BAND -eq 5 ]]; then
+        CHANNEL_FREQ_FILTER="(5[1-8])"
+    elif [[ $FREQ_BAND -eq 6 ]]; then
+        CHANNEL_FREQ_FILTER="((59)|(6[0-9])|(7[0-1]))"
+    fi
 
     if [[ $USE_IWCONFIG -eq 0 ]]; then
-        CHANNEL_INFO=$(get_adapter_info "${IFACE}" | grep -E " [0-9]+(\.[0-9]+){0,1} MHz \[${CHANNEL_NUM}\]")
+        CHANNEL_INFO=$(get_adapter_info "${IFACE}" | grep -E " ${CHANNEL_FREQ_FILTER}[0-9]{2}(\.[0-9]+){0,1} MHz \[${CHANNEL_NUM}\]")
         [[ -z "${CHANNEL_INFO}" ]] && return 1
-        [[ "${CHANNEL_INFO}" == *no\ IR* ]] && return 1
-        [[ "${CHANNEL_INFO}" == *disabled* ]] && return 1
+        [[ "${CHANNEL_INFO}" == *no\ IR* ]] && return 2
+        [[ "${CHANNEL_INFO}" == *disabled* ]] && return 3
         return 0
     else
         CHANNEL_NUM=$(printf '%02d' ${CHANNEL_NUM})
@@ -640,20 +718,26 @@ can_transmit_to_channel() {
     fi
 }
 
-# taken from iw/util.c
 ieee80211_frequency_to_channel() {
     local FREQ=$1
-    if [[ $FREQ -eq 2484 ]]; then
+
+    # 2.4G
+    if [[ $FREQ -ge 2412 && $FREQ -le 2472 ]]; then # 2.4 GHz band: Channels 1-13 (2412~2472 MHz)
+        echo $(( (FREQ - 2407) / 5 ))
+    elif [[ $FREQ -eq 2484 ]]; then # 2.4 GHz Channel 14 (2484 MHz, Japan only)
         echo 14
-    elif [[ $FREQ -lt 2484 ]]; then
-        echo $(( ($FREQ - 2407) / 5 ))
-    elif [[ $FREQ -ge 4910 && $FREQ -le 4980 ]]; then
-        echo $(( ($FREQ - 4000) / 5 ))
-    elif [[ $FREQ -le 45000 ]]; then
-        echo $(( ($FREQ - 5000) / 5 ))
-    elif [[ $FREQ -ge 58320 && $FREQ -le 64800 ]]; then
-        echo $(( ($FREQ - 56160) / 2160 ))
-    else
+
+    # 5G
+    elif [[ $FREQ -ge 5160 && $FREQ -le 5885 ]]; then # 5 GHz band: Standard Channels 36-165 (5180~5825 MHz) (extra: 32, 169-177)
+        echo $(( (FREQ - 5000) / 5 ))
+
+    # 6G
+    elif [[ $FREQ -ge 5955 && $FREQ -le 7115 ]]; then # 6 GHz band: Channels 1-233 (5955~7115 MHz), Wi-Fi 6E/7
+        echo $(( (FREQ - 5950) / 5 ))
+    elif [[ $FREQ -eq 5935 ]]; then # 6 GHz band: Special case for 5935 MHz (Channel 2, rare)
+        echo 2
+
+    else # Frequency not in supported Wi-Fi bands (2.4/5/6 GHz)
         echo 0
     fi
 }
@@ -683,40 +767,40 @@ get_interface_mac() {
 
 show_interface_pci_info() {  # pci id / model / virtual
     is_interface "$1" || return
-    
+
     local device_path
     local bus_id=""
     local device_type_and_bus_id="unknown"
     local driver=""
     local device_fullname=""
-    
+
     device_path="$(readlink -f /sys/class/net/$1)"
-    
+
     if [[ "$device_path" == "/sys/devices/pci"* ]]; then
         local pci_path
 
         pci_path=$device_path/../..
-        
+
         if [[ -d "$pci_path/driver" ]] ; then
             driver=$(readlink -f "$pci_path/driver" | sed 's/\//\n/g' | tail -n 1)
         fi
-        
+
         bus_id="$(echo "$device_path" | sed 's/\//\n/g' | tail -n 3 |sed -n 1p)"
         device_type_and_bus_id="PCI: $bus_id"
-        
+
         if which lspci >/dev/null 2>&1 ; then
             device_fullname="$( lspci -D -nn -s "$bus_id" | awk '{$1="" ; print $0}' )"
         fi
-        
+
     elif [[ "$device_path" == *"/virtual/"* ]]; then
         device_type_and_bus_id="virtual interface"
     fi
-    
+
     echo "$device_type_and_bus_id"
     [[ -n "$driver" ]] && echo "System-already-loaded driver: $driver"
     [[ -n "$device_fullname" ]] && echo "$device_fullname"
     echo ""
-    # TODO usb
+    # TODO Fix pci and usb devices
 }
 
 alloc_new_vface_name() { # only for wifi
@@ -758,7 +842,7 @@ get_new_macaddr_according_to_existing() {
 }
 
 generate_random_mac() {
-    local r1 r2 r3 r4 r5 r6 
+    local r1 r2 r3 r4 r5 r6
     local RAND_MAC
     while :; do
         r1=$( printf "%02x" $(($RANDOM%256/4*4)) )
@@ -843,7 +927,7 @@ pid_watchdog() {
     local ERR_MSG="$3"
     local ST
     while true
-    do 
+    do
         if [[ -e "/proc/$PID" ]]; then
             ST="$(cat "/proc/$PID/status" | grep "^State:" | awk '{print $2}')"
             if [[ "$ST" != 'Z' ]]; then
@@ -853,40 +937,44 @@ pid_watchdog() {
         fi
         die "$ERR_MSG"
     done
-    
+
 }
 #========
 get_pid_by_dbus_name() {
     local DBUS_NAME="$1"
     local pid  r
-    
+
     which dbus-send >/dev/null 2>&1 || return 1
-    
+
     pid="$( dbus-send --system --print-reply --dest=org.freedesktop.DBus /org/freedesktop/DBus org.freedesktop.DBus.GetConnectionUnixProcessID string:$DBUS_NAME  2>/dev/null | grep "   uint32 " | awk '{print $2}' )"
     r=$?
-    
+
     echo "$pid"
     return $r
 }
 is_same_netns() {
     local pid2="$1"
+    local my_netns his_netns
     [[ ! -f /proc/$$/ns/net ]] && return 0 # no netns feature. treat as same
-    [[ "$(readlink /proc/$$/ns/net)" == "$(readlink /proc/$pid2/ns/net)" ]] && return 0
+    my_netns="$(readlink /proc/$$/ns/net)"
+    his_netns="$(readlink /proc/$pid2/ns/net)"
+    [[ ! -n "$his_netns" ]] && return 1 # can't find his pid or netns (maybe different pidns), treat as not same
+    [[ "$my_netns" == "$his_netns" ]] && return 0
     return 1
 }
 #-----------------
 # only support NetworkManager >= 0.9.9
 is_nm_running() {
     NM_PID="$(get_pid_by_dbus_name "org.freedesktop.NetworkManager")"
-    
+
     [[ ! -n "$NM_PID" ]] && return 1 # not running
-    
+
     if (which nmcli >/dev/null 2>&1 ) && (nmcli -t -f RUNNING g 2>&1 | grep -E '^running$' >/dev/null 2>&1 ) ; then
         if is_same_netns "$NM_PID"; then
             return 0
         fi
     fi
-    
+
     NM_PID= # cancel value if treat as not running
     return 1  # not running
 }
@@ -927,9 +1015,9 @@ nm_restore_manage() {
 #-------
 is_firewalld_running() {
     FIREWALLD_PID="$(get_pid_by_dbus_name "org.fedoraproject.FirewallD1")"
-    
+
     [[ ! -n "$FIREWALLD_PID" ]] && return 1 # not running
-    
+
     if (which firewall-cmd >/dev/null 2>&1 ) && [[ "$(firewall-cmd --state 2>&1)" == "running" ]] ; then
         if is_same_netns "$FIREWALLD_PID"; then
             echo "firewalld is running ($(firewall-cmd --version))"
@@ -960,7 +1048,7 @@ CUSTOM_CHAINS_4_filter=
 CUSTOM_CHAINS_4_nat=
 CUSTOM_CHAINS_6_filter=
 CUSTOM_CHAINS_6_nat=
-iptb() 
+iptb()
 {
     local FoS=$1 # 4 | 6
     shift
@@ -972,26 +1060,26 @@ iptb()
     shift
     local CH=$1 # chain
     shift
-    
+
     [[ "$IPV6" -ne 1 && "$FoS" == "6" ]] && return
-    
+
     local CMD_HEAD=""
     local MOUTH=""
     local NECK=""
     local HAND_UN_NC=0
     local TAIL=""
-    
+
     local FULL=""
     local ADD_TO_UNDO=1
-    
+
     local arr_name  w
-    
+
     for arr_name in CUSTOM_CHAINS_4_filter CUSTOM_CHAINS_4_nat CUSTOM_CHAINS_6_filter CUSTOM_CHAINS_6_nat
     do
         local arr_content
         eval arr_content=\"\${$arr_name}\"
         #echo $arr_content
-        
+
         for w in  $arr_content
         do
             if [[ "$arr_name" =~ "$FoS" && "$arr_name" =~ "$T" && "$w" == "$CH" ]]; then
@@ -999,37 +1087,37 @@ iptb()
             fi
         done
     done
-    
+
 
     [[ "$FoS" == "4" ]] && CMD_HEAD="iptables -w "
     [[ "$FoS" == "6" ]] && CMD_HEAD="ip6tables -w "
-    
+
     [[ "$Vis" == 'v' ]] && MOUTH="-v"
-    
+
     NECK="-t ${T}"
-    
+
     if [[ "$ACT" == "N" ]]; then
         eval CUSTOM_CHAINS_${FoS}_${T}=\"\${CUSTOM_CHAINS_${FoS}_${T}} ${CH}\"
         HAND_UN_NC=1
     fi
-    
-    
-    
+
+
+
     [[ ! "$NETFILTER_XT_MATCH_COMMENT" == "0" ]] && TAIL="-m comment --comment lrt${$}${SUBNET_IFACE}"
-    
+
     if [[ "$ADD_TO_UNDO" -eq 1 ]]; then
         if [[ "$ACT" == "I" || "$ACT" == "A" ]]; then
-            echo "$CMD_HEAD $NECK -D ${CH} $@ $TAIL" >> $CONFDIR/undo_iptables.sh 
+            echo "$CMD_HEAD $NECK -D ${CH} $@ $TAIL" >> $CONFDIR/undo_iptables.sh
         fi
-        
+
         if [[ "$HAND_UN_NC" -eq 1 ]]; then
             echo "$CMD_HEAD $NECK -F ${CH} $@ $TAIL" >> $CONFDIR/undo_iptables_2.sh
             echo "$CMD_HEAD $NECK -X ${CH} $@ $TAIL" >> $CONFDIR/undo_iptables_2.sh
         fi
     fi
-    
- 
-    
+
+
+
 
     FULL="$CMD_HEAD $MOUTH $NECK -${ACT} ${CH} $@ $TAIL"
     #echo $FULL
@@ -1047,40 +1135,40 @@ disable_unwanted_forwarding() {
                 ! -i "$INTERNET_IFACE"    -o "$SUBNET_IFACE" \
                 -j REJECT || die
         fi
-        
+
         if [[ "$SHARE_METHOD" == 'redsocks' || "$SHARE_METHOD" == 'none' \
             || ( "$iv" -eq "4" && "$NO4" -eq 1  ) ]];then
             iptb "$iv" n filter I FORWARD  -i "$SUBNET_IFACE"  -j REJECT || die
             iptb "$iv" n filter I FORWARD  -o "$SUBNET_IFACE"  -j REJECT || die
         fi
     done
-        
+
 }
 start_nat() {
     local SUBNET_NET
-    
+
     local iv
 
     echo
     echo "iptables: NAT "
-    
+
     for iv in "${IP_VERs[@]}"; do
         [[ "$iv" -eq "4" && ! $NO4 -eq 0 ]] && continue
-        
+
         [[ "$iv" -eq "4" ]] && SUBNET_NET="$SUBNET_NET4"
         [[ "$iv" -eq "6" ]] && SUBNET_NET="$SUBNET_NET6"
-        
+
         if [[ -n "$INTERNET_IFACE" ]]; then # only one Internet interface
             # masquerade subnet -> internet
             iptb "$iv" v nat I POSTROUTING -s "$SUBNET_NET"  ! -d "$SUBNET_NET" \
                 -o "$INTERNET_IFACE" \
                 -j MASQUERADE || die
-                
+
             # forward subnet -> internet
             iptb "$iv" v filter I FORWARD  -i "$SUBNET_IFACE"  -s "$SUBNET_NET" \
                 -o $INTERNET_IFACE \
                 -j ACCEPT || die
-            
+
             # forward any -> subnet
             iptb "$iv" v filter I FORWARD  -o "$SUBNET_IFACE"  -d "$SUBNET_NET"  \
                 -i "$INTERNET_IFACE" \
@@ -1090,32 +1178,32 @@ start_nat() {
             iptb "$iv" v nat I POSTROUTING -s "$SUBNET_NET"  ! -d "$SUBNET_NET" \
                 ! -o "$SUBNET_IFACE"  \
                 -j MASQUERADE || die
-                
+
             # forward subnet -> any
             iptb "$iv" v filter I FORWARD  -i "$SUBNET_IFACE"  -s "$SUBNET_NET"  \
                 -j ACCEPT || die
-                
+
             # forward any -> subnet
             iptb "$iv" v filter I FORWARD  -o "$SUBNET_IFACE"  -d "$SUBNET_NET" \
                 -j ACCEPT || die
         fi
-    done 
+    done
 }
 
 start_ban_lan() {
     local arr_nets_to_protect
     local ICMP_NAME
     local iv  s
-    
+
     echo
     echo "iptables: Disallow clients to access LAN"
-    
+
     for iv in "${IP_VERs[@]}"; do
         # ban forwarding for subnet
         iptb "$iv" n filter N lrt${$}${SUBNET_IFACE}-BLF || die
         # TODO: allow '--dhcp-dns(6)' address port 53, which can be something needed, e.g. a VPN's internal private IP
         if [[ "$iv" -eq "4" ]]; then
-            arr_nets_to_protect=("0.0.0.0/8" "10.0.0.0/8" "100.64.0.0/10" "127.0.0.0/8" "169.254.0.0/16" "172.16.0.0/12" "192.168.0.0/16" "224.0.0.0/4" "255.255.255.255") 
+            arr_nets_to_protect=("0.0.0.0/8" "10.0.0.0/8" "100.64.0.0/10" "127.0.0.0/8" "169.254.0.0/16" "172.16.0.0/12" "192.168.0.0/16" "224.0.0.0/4" "255.255.255.255")
             ICMP_NAME="icmp"
         elif [[ "$iv" -eq "6" ]]; then
             arr_nets_to_protect=("fc00::/7" "fe80::/10" "ff00::/8" "::1" "::/128" "::ffff:0:0/96" "::ffff:0:0:0/96")
@@ -1125,7 +1213,7 @@ start_ban_lan() {
             iptb "$iv" v filter I lrt${$}${SUBNET_IFACE}-BLF -d "$s" -j REJECT || die
         done
         iptb "$iv" n filter I FORWARD -i ${SUBNET_IFACE} -j lrt${$}${SUBNET_IFACE}-BLF || die
-        
+
         # ban input from subnet
         iptb "$iv" n filter N lrt${$}${SUBNET_IFACE}-BLI || die
         iptb "$iv" v filter I lrt${$}${SUBNET_IFACE}-BLI -i ${SUBNET_IFACE} ! -p "$ICMP_NAME" -j REJECT || die # ipv6 need icmp to function. TODO: maybe we can block some unneeded icmp to improve security
@@ -1140,14 +1228,14 @@ allow_dns_port() {
     local PROTs
     local iv  pt
 
-    
+
     echo
     echo "iptables: allow DNS"
-    
+
     for iv in "${IP_VERs[@]}"; do
         [[ "$iv" -eq "4" ]] && GATEWAY="$GATEWAY4"
         [[ "$iv" -eq "6" ]] && GATEWAY="$GATEWAY6"
-        
+
         [[ "$iv" -eq "4" ]] && SUBNET_NET="$SUBNET_NET4"
         [[ "$iv" -eq "6" ]] && SUBNET_NET="$SUBNET_NET6"
 
@@ -1156,7 +1244,7 @@ allow_dns_port() {
         for pt in "${PROTs[@]}"; do
             iptb "$iv" v filter I INPUT -i "$SUBNET_IFACE" -s "$SUBNET_NET" -d "$GATEWAY" -p "$pt" -m "$pt" --dport 53 -j ACCEPT || die
         done
-    done 
+    done
 }
 
 
@@ -1167,11 +1255,11 @@ start_catch_dns() {
 
     echo
     echo "iptables: redirect DNS queries to this host"
-    
+
     for iv in "${IP_VERs[@]}"; do
         [[ "$iv" -eq "4" ]] && GATEWAY="$GATEWAY4"
         [[ "$iv" -eq "6" ]] && GATEWAY="$GATEWAY6"
-   
+
         PROTs=("tcp" "udp")
         for pt in "${PROTs[@]}"; do
             iptb "$iv" v nat I PREROUTING -i "$SUBNET_IFACE" ! -d "$GATEWAY" -p "$pt" -m "$pt" --dport 53 -j REDIRECT --to-ports 53 || die
@@ -1181,9 +1269,9 @@ start_catch_dns() {
 
 
 allow_dhcp() {
-    echo 
+    echo
     echo "iptables: allow dhcp"
-    
+
     iptb 4 v filter I INPUT -i ${SUBNET_IFACE} -p udp -m udp --dport 67 -j ACCEPT || die
     iptb 6 v filter I INPUT -i ${SUBNET_IFACE} -p udp -m udp --dport 547 -j ACCEPT || die
 }
@@ -1193,25 +1281,25 @@ start_redsocks() {
     local SUBNET_NET
     local arr_nets_to_ignore
     local s iv
-    
+
     echo
     echo "iptables: transparent proxy non-LAN TCP and UDP(not tested) traffic to port ${TP_PORT}"
-    
+
     for iv in "${IP_VERs[@]}"; do
         [[ "$iv" -eq "4" && ! $NO4 -eq 0 ]] && continue
-        
+
         [[ "$iv" -eq "4" ]] && SUBNET_NET="$SUBNET_NET4"
         [[ "$iv" -eq "6" ]] && SUBNET_NET="$SUBNET_NET6"
-            
-            
+
+
         iptb "$iv" n nat N lrt${$}${SUBNET_IFACE}-TP || die
-        
+
         if [[ "$iv" -eq "4" ]]; then
             arr_nets_to_ignore=("0.0.0.0/8" "10.0.0.0/8" "100.64.0.0/10" "127.0.0.0/8" "169.254.0.0/16" "172.16.0.0/12" "192.168.0.0/16" "224.0.0.0/4" "255.255.255.255")
         elif [[ "$iv" -eq "6" ]];then
             arr_nets_to_ignore=("fc00::/7" "fe80::/10" "ff00::/8" "::1" "::")
         fi
-        
+
         for s in "${arr_nets_to_ignore[@]}"; do
             iptb "$iv" n nat A lrt${$}${SUBNET_IFACE}-TP -d "$s" -j RETURN || die
         done
@@ -1221,7 +1309,7 @@ start_redsocks() {
 
         iptb "$iv" v nat I PREROUTING -i "$SUBNET_IFACE" -s "$SUBNET_NET" -j lrt${$}${SUBNET_IFACE}-TP || die
 
-        
+
         iptb "$iv" v filter I INPUT -i "$SUBNET_IFACE" -s "$SUBNET_NET" -p tcp -m tcp --dport ${TP_PORT}  -j ACCEPT || die
         iptb "$iv" v filter I INPUT -i "$SUBNET_IFACE" -s "$SUBNET_NET" -p udp -m udp --dport ${TP_PORT}  -j ACCEPT || die
     done
@@ -1235,7 +1323,7 @@ backup_ipv6_bits() {
         "/proc/sys/net/ipv6/conf/$SUBNET_IFACE/use_tempaddr"  \
         "/proc/sys/net/ipv6/conf/$SUBNET_IFACE/addr_gen_mode" \
             "$CONFDIR/sys_6_conf_iface/" || die "Failed backing up interface ipv6 bits"
-            
+
     if [[ "$SHARE_METHOD" == 'redsocks' ]] ; then
         cp "/proc/sys/net/ipv6/conf/$SUBNET_IFACE/forwarding" \
             "$CONFDIR/sys_6_conf_iface/" || die "Failed backking up interface ipv6 bits"
@@ -1260,45 +1348,45 @@ restore_ipv6_bits() {
 set_interface_mac() {
     local INTERFACE
     local MAC
-    
+
     INTERFACE=$1
     MAC=$2
-    
-    ip link set dev "${INTERFACE}" address "${MAC}" 
+
+    ip link set dev "${INTERFACE}" address "${MAC}"
 }
 
 backup_interface_status() {
     # virtual wifi interface will be destroyed, so no need to save status
-    
+
     # backup interface up or down status
     (ip link show "${SUBNET_IFACE}" |grep -q "state UP") && SUBNET_IFACE_ORIGINAL_UP_STATUS=1
-    
-    # save interface old mac 
-    #if [[ -n "$NEW_MACADDR" ]]; then 
+
+    # save interface old mac
+    #if [[ -n "$NEW_MACADDR" ]]; then
         OLD_MACADDR=$(get_interface_mac "$SUBNET_IFACE")
         #echo "Saved ${SUBNET_IFACE} old MAC address ${OLD_MACADDR} into RAM"
     #fi
-    
+
     backup_ipv6_bits
-    
+
     # TODO : ? backup ip and others???
-    
+
     # nm managing status is saved when nm_set_unmanaged()
 }
 restore_interface_status() {
     # virtual wifi interface will be destroyed, so no need to restore status
     # don't use [[ $VWIFI_IFACE ]] to judge, if creating virtual wifi failed, VWIFI_IFACE is empty
     [[ "$WIFI_IFACE" && "$NO_VIRT" -eq 0 ]] && return
-    
+
     restore_ipv6_bits
 
     if [[ -n "$OLD_MACADDR" && "$(get_interface_mac "$SUBNET_IFACE")" != "$OLD_MACADDR" ]] ; then
         echo "Restoring ${SUBNET_IFACE} to old MAC address ${OLD_MACADDR} ..."
         set_interface_mac "${SUBNET_IFACE}" "${OLD_MACADDR}" || echo "Failed restoring ${SUBNET_IFACE} to old MAC address ${OLD_MACADDR}" >&2
     fi
-    
+
     nm_restore_manage
-    
+
     [[ $SUBNET_IFACE_ORIGINAL_UP_STATUS -eq 1 ]] && ip link set up dev "${SUBNET_IFACE}" && echo "Restore ${SUBNET_IFACE} to link up"
 }
 #---------------------------------------
@@ -1311,7 +1399,7 @@ kill_processes() { # for this instance
         # a value in $x. so we need to check if the value is a file
         if [[ -f $x ]] &&  sleep 0.3  && [[ -f $x ]]; then
             pid=$(cat "$x")
-            pn=$( ps -p "$pid" -o comm= ) 
+            pn=$( ps -p "$pid" -o comm= )
             #echo "Killing $pid $pn ... "
             pkill -P "$pid"
             kill "$pid" 2>/dev/null && ( echo "Killed $(basename "$x") $pid $pn" && rm "$x" ) || echo "Failed to kill $(basename "$x") $pid $pn, it may have exited"
@@ -1323,27 +1411,27 @@ _cleanup() {
     local x
 
     ip addr flush "${SUBNET_IFACE}"
-    
-    rm -rf "$CONFDIR"
-    
+
+    [[ ! "$KEEP_CONFDIR" -eq 1 ]] && rm -rf "$CONFDIR"
+
     ip link set down dev "${SUBNET_IFACE}"
-    
+
     firewalld_del_tmpzone
-    
+
     if [[ $VWIFI_IFACE ]]; then # the subnet interface (virtual wifi interface) will be removed
         iw dev "${VWIFI_IFACE}" del
         dealloc_vface_name "$VWIFI_IFACE"
     fi
-    
+
     restore_interface_status
-    
+
     if ! has_running_instance; then
         echo "Exiting: This is the only running instance"
         # kill common processes
         for x in $COMMON_CONFDIR/*.pid; do
             [[ -f $x ]] && kill -9 $(cat "$x") && rm "$x"
         done
-        
+
         rm -d "$COMMON_CONFDIR/vfaces"
         rm -d "$COMMON_CONFDIR"
         rm -d "$TMPDIR"
@@ -1354,12 +1442,13 @@ _cleanup() {
 
 clean_iptables() {
     [[ -f $CONFDIR/undo_iptables.sh ]] && bash $CONFDIR/undo_iptables.sh
-    
+
     [[ -f $CONFDIR/undo_iptables_2.sh ]] && bash $CONFDIR/undo_iptables_2.sh
 }
 
 cleanup() {
     trap "" SIGINT SIGUSR1 SIGUSR2 EXIT SIGTERM
+    touch "$CONFDIR/exit_$(date +"%Y-%m-%d_%H:%M:%S.%6N")"
     echo
     echo
     echo "Doing cleanup.. "
@@ -1367,11 +1456,11 @@ cleanup() {
     echo "Undoing iptables changes .."
     clean_iptables > /dev/null
     _cleanup 2> /dev/null
-    
+
     #pgid=$(ps opgid= $$ |awk '{print $1}' )
     #echo "Killing PGID $pgid ..."
     #kill -15 -$pgid
-    #sleep 1 
+    #sleep 1
     echo "Cleaning up done"
     #kill -9 -$pgid
 }
@@ -1402,12 +1491,14 @@ init_conf_dirs() {
     cd "$TMPDIR" || die "Couldn't change directory to linux-router's temporary path"
 
     CONFDIR="$(mktemp -d $TMPDIR/lnxrouter.${TARGET_IFACE}.conf.XXXXXX)" || die "Instance couldn't make config dir" # config dir for one instance
-    chmod 755 "$CONFDIR"
-    #echo "Config dir: $CONFDIR"
+    echo "Config dir: $CONFDIR"
+    chmod 755 "$CONFDIR" || die "chmod config dir failed"
     echo $$ > "$CONFDIR/pid"
 
+    touch "$CONFDIR/begin_$(date +"%Y-%m-%d_%H:%M:%S.%6N")"
+
     COMMON_CONFDIR="$TMPDIR/lnxrouter_common.conf" # config dir for all instances
-    mkdir -p "$COMMON_CONFDIR"
+    mkdir -p "$COMMON_CONFDIR" || die "Failed creating common config dir"
 }
 
 #== functions to deal with running instances
@@ -1461,7 +1552,7 @@ print_clients_from_leases() {  # MAC|IP|HOST|lease
     local FILEC
     local line
     local LEASEstr LEASEstamp
-    
+
     FILEC="$(cat "$LEASE_FILE" | grep -v -E "^duid\b" | sed -r '/^\s*$/d' )"
 
     # TODO: duid is somewhat related to ipv6. I don't know about it. Not sure excluding it miss some info or not
@@ -1472,31 +1563,31 @@ print_clients_from_leases() {  # MAC|IP|HOST|lease
         MAC="$(echo "$line" | awk '{print $2}')"
         IP="$(echo "$line" | awk '{print $3}'  | sed 's/\[//g' | sed 's/\]//g')"
         HOST="$(echo "$line" | awk '{print $4}' | sed 's/*/?/g' | sed 's/|/_/g' | sed 's/ /_/g' )"
-        
+
         if [[ -n "$MAC" ]]; then
             LEASEstr="$(date -d @${LEASEstamp} +%m-%d_%X)"
-            
+
             echo "$MAC|$IP|$HOST|lease_$LEASEstr"
         fi
     done
-    
+
 }
-print_interface_neighbors_via_iproute() {  # MAC|IP|_|STATUS 
+print_interface_neighbors_via_iproute() {  # MAC|IP|_|STATUS
     local IFACE=$1
-    
+
     local line
-    
+
     ip n | grep -E "\bdev $IFACE\b" | sed 's/ /|/g' | while read -r line
     do
         local MAC IP STATUS
-        
+
         IP="$(echo "$line" | awk -F'|' '{print $1}')"
-        
+
         if [[ "$(echo "$line" | awk -F'|' '{print $4}')" == "lladdr" ]]; then # has mac
             # if has mac, $4="lladdr" and $5=macaddress and $6+=status
             MAC="$(echo "$line" | awk -F'|' '{print $5}')"
             STATUS="$(echo "$line" | awk -F'|' '$1="";$2="";$3="";$4="";$5="";{print}' | awk '{$1=$1;print}'| sed 's/ /,/g')"
-        else # no mac 
+        else # no mac
             # if no mac, $4="" and $5+=status
             MAC="?"
             STATUS="$(echo "$line" | awk -F'|' '$1="";$2="";$3="";$4="";{print}' | awk '{$1=$1;print}' | sed 's/ /,/g')"
@@ -1506,7 +1597,7 @@ print_interface_neighbors_via_iproute() {  # MAC|IP|_|STATUS
         fi
     done
 }
-print_interface_neighbors_via_iw() {  # MAC|_|_|signal  
+print_interface_neighbors_via_iw() {  # MAC|_|_|signal
     local IFACE=$1
     local MAC SIGNAL
     iw dev "$IFACE" station dump | awk '($1 ~ /Station$/) {print $2}' | while read -r MAC
@@ -1521,14 +1612,14 @@ print_interface_neighbors_via_iw() {  # MAC|_|_|signal
 list_clients() { # passive mode. (use 'arp-scan' or 'netdiscover' if want active mode)
     local IFACE pid
     local CONFDIR
-    
+
     local output=""
     # If number (PID) is given, get the associated wifi iface
     if [[ "$1" =~ ^[1-9][0-9]*$ ]]; then
         pid="$1"
         IFACE=$(get_subn_iface_from_pid "$pid")
         if [[ -z "$IFACE" ]] ; then
-            echo "'$pid' is not the pid of a running $PROGNAME instance." >&2 
+            echo "'$pid' is not the pid of a running $PROGNAME instance." >&2
             exit 1
         fi
     else # non-number given
@@ -1547,14 +1638,14 @@ list_clients() { # passive mode. (use 'arp-scan' or 'netdiscover' if want active
     fi
     output="$(echo "$output" ; print_interface_neighbors_via_iw "$IFACE") "
     output="$(echo "$output" ; print_interface_neighbors_via_iproute "$IFACE")"
-    
+
     output="$(echo "$output" | sort -k 1 -k 2 -t '|' | uniq | sed -r '/^\s*$/d')"
 
     echo "$IFACE ($(get_interface_mac "$IFACE")) neighbors:"
-    
+
     local fmt="%-19s%-41s%-20s%s" # string length: MAC 17, ipv4 15, ipv6 39, hostname ?
     printf "$fmt\n"  "MAC" "IP" "HOSTNAME" "INFO"
-    
+
     local line
     echo "$output"| while read -r line
     do
@@ -1657,19 +1748,24 @@ daemonizing_check(){
 
 #============================
 check_wifi_settings() {
+    PHY="$(get_interface_phy_device "$WIFI_IFACE")"
+    if [[ -z "$PHY" ]]; then
+        echo "ERROR: Can't get phy of wifi interface '$WIFI_IFACE' (Did you spell the interface name right?)" >&2
+        exit 1
+    fi
 
     if ! ( which iw > /dev/null 2>&1 && iw dev "$WIFI_IFACE" info > /dev/null 2>&1 ); then
-        echo "WARN: Can't use 'iw' to operate interfce '$WIFI_IFACE', trying 'iwconfig' (not as good as 'iw') ... (Did you spell the interface name right?)" >&2
+        echo "WARN: Can't use 'iw' to operate interfce '$WIFI_IFACE', trying 'iwconfig' (not as good as 'iw') ..." >&2
         USE_IWCONFIG=1
     fi
-    
+
     if [[ $USE_IWCONFIG -eq 1 ]]; then
         if ! (which iwconfig > /dev/null 2>&1 && iwconfig "$WIFI_IFACE" > /dev/null 2>&1); then
             echo "ERROR: Can't use 'iwconfig' to operate interfce '$WIFI_IFACE'" >&2
             exit 1
         fi
     fi
-    
+
     if [[ $FREQ_BAND != 2.4 && $FREQ_BAND != 5 ]]; then
         echo "ERROR: Invalid frequency band" >&2
         exit 1
@@ -1708,7 +1804,7 @@ check_wifi_settings() {
             DRIVER=rtl871xdrv
         fi
     fi
-    
+
     if [[ ${#SSID} -lt 1 || ${#SSID} -gt 32 ]]; then
         echo "ERROR: Invalid SSID length ${#SSID} (expected 1..32)" >&2
         exit 1
@@ -1784,32 +1880,32 @@ decide_ip_addresses() {
     if [[ $IPV6 -eq 1 ]]; then
         GATEWAY6="${PREFIX6}${IID6}"
     fi
-    
+
     SUBNET_NET4="${GATEWAY4%.*}.0/24"
     [[ $IPV6 -eq 1 ]] && SUBNET_NET6="${PREFIX6}/64"
-    
+
 }
 
 prepare_wifi_interface() {
     if [[ $USE_IWCONFIG -eq 0 ]]; then
         iw dev "${WIFI_IFACE}" set power_save off
     fi
-    
+
     if [[ $NO_VIRT -eq 0 ]]; then
     ## Will generate virtual wifi interface
-    
+
         # TODO move this to check_wifi_settings() ?
         if is_interface_wifi_connected "${WIFI_IFACE}"; then
             WIFI_IFACE_FREQ=$(iw dev "${WIFI_IFACE}" link | grep -i freq | awk '{print $2}' | sed 's/\.00*$//g')  # NOTE we assume integer currently, which can be right, or wrong  in the future
             WIFI_IFACE_CHANNEL=$(ieee80211_frequency_to_channel "${WIFI_IFACE_FREQ}")
-            
+
             echo "${WIFI_IFACE} already working in channel ${WIFI_IFACE_CHANNEL} (${WIFI_IFACE_FREQ} MHz)"
-            
+
             if [[ $CHANNEL == default ]]; then
                 echo "Use wifi adapter current channel $WIFI_IFACE_CHANNEL as target channel"
                 CHANNEL=$WIFI_IFACE_CHANNEL
             fi
-            
+
             if [[ $WIFI_IFACE_CHANNEL -ne $CHANNEL ]]; then
                 echo "WARN: Wifi adapter already working in channel ${WIFI_IFACE_CHANNEL}, which is different than target channel $CHANNEL" >&2
             fi
@@ -1820,7 +1916,7 @@ prepare_wifi_interface() {
         if iw dev "${WIFI_IFACE}" interface add "${VWIFI_IFACE}" type __ap; then
             # Successfully created virtual wifi interface
             # if NM running, it will give the new virtual interface a random MAC. MAC will go back after setting NM unmanaged
-            sleep 2  
+            sleep 2
             echo "${VWIFI_IFACE} created"
         else
             VWIFI_IFACE=
@@ -1832,12 +1928,12 @@ prepare_wifi_interface() {
               die "Failed creating virtual WiFi interface. Maybe your WiFi adapter does not fully support virtual interfaces. Try again with '--no-virt'"
             fi
         fi
-        
+
         AP_IFACE=${VWIFI_IFACE}
     else # no virtual wifi interface, use wifi device interface itself
         AP_IFACE=${WIFI_IFACE}
     fi
-    
+
     if [[ $CHANNEL == default ]]; then
         echo "Channel not specified, use default"
         if [[ $FREQ_BAND == 2.4 ]]; then
@@ -1846,6 +1942,8 @@ prepare_wifi_interface() {
             CHANNEL=36
         fi
     fi
+
+    echo "Freq band: $FREQ_BAND GHz   Channel: $CHANNEL"
 }
 
 decide_subnet_interface() {
@@ -1858,12 +1956,12 @@ decide_subnet_interface() {
 
 dealwith_mac() {
     local VMAC
-    
-    if [[ -n "$NEW_MACADDR" ]] ; then  # user choose to set subnet mac 
+
+    if [[ -n "$NEW_MACADDR" ]] ; then  # user choose to set subnet mac
 
         echo "Setting ${SUBNET_IFACE} new MAC address ${NEW_MACADDR} ..."
         set_interface_mac "${SUBNET_IFACE}" "${NEW_MACADDR}" || die "Failed setting new MAC address"
-        
+
     elif [[ $VWIFI_IFACE ]]; then # user didn't choose to set mac, but using virtual wifi interface
 
         VMAC=$(get_new_macaddr_according_to_existing "${WIFI_IFACE}")
@@ -1874,7 +1972,7 @@ dealwith_mac() {
     fi
 }
 
-write_hostapd_conf() {  
+write_hostapd_conf() {
     cat <<- EOF > "$CONFDIR/hostapd.conf"
 		beacon_int=100
 		ssid=${SSID}
@@ -1926,8 +2024,36 @@ write_hostapd_conf() {
         echo "ieee80211ac=1" >> "$CONFDIR/hostapd.conf"
     fi
 
+    if [[ $IDLETIMEOUT -ne 300 ]]; then
+        echo "ap_max_inactivity=${IDLETIMEOUT}" >> "$CONFDIR/hostapd.conf"
+    fi
+
     if [[ $REQUIREVHT -eq 1 ]]; then
         echo "require_vht=1" >> "$CONFDIR/hostapd.conf"
+    fi
+
+    if [[ $IEEE80211AX -eq 1 ]]; then
+        echo "ieee80211ax=1" >> "$CONFDIR/hostapd.conf"
+    fi
+
+    if [[ $REQUIREHE -eq 1 ]]; then
+        echo "require_he=1" >> "$CONFDIR/hostapd.conf"
+    fi
+
+    if [[ $HESUBFE -eq 1 ]]; then
+        echo "he_su_beamformee=1" >> "$CONFDIR/hostapd.conf"
+    fi
+
+    if [[ $HESUBFR -eq 1 ]]; then
+        echo "he_su_beamformer=1" >> "$CONFDIR/hostapd.conf"
+    fi
+
+    if [[ $HEMUBFR -eq 1 ]]; then
+        echo "he_mu_beamformer=1" >> "$CONFDIR/hostapd.conf"
+    fi
+
+    if [[ $HEP2PTWT -eq 1 ]]; then
+        echo "peer_to_peer_twt=1" >> "$CONFDIR/hostapd.conf"
     fi
 
     if [[ -n "$VHT_CAPAB" ]]; then
@@ -1952,7 +2078,25 @@ write_hostapd_conf() {
 		EOF
 	fi
 
-    if [[ $IEEE80211N -eq 1 ]] || [[ $IEEE80211AC -eq 1 ]]; then
+    if [[ $HECHANNELWIDTH -gt 0 ]]; then
+		cat <<- EOF >> "$CONFDIR/hostapd.conf"
+			he_oper_chwidth=${HECHANNELWIDTH}
+		EOF
+	fi
+
+	if [[ $HESEG0CHINDEX -gt 0 ]]; then
+		cat <<- EOF >> "$CONFDIR/hostapd.conf"
+			he_oper_centr_freq_seg0_idx=${HESEG0CHINDEX}
+		EOF
+	fi
+
+	if [[ $HESEG1CHINDEX -gt 0 ]]; then
+		cat <<- EOF >> "$CONFDIR/hostapd.conf"
+			he_oper_centr_freq_seg1_idx=${HESEG1CHINDEX}
+		EOF
+	fi
+
+    if [[ $IEEE80211N -eq 1 ]] || [[ $IEEE80211AC -eq 1 ]] || [[ $IEEE80211AX -eq 1 ]]; then
         echo "wmm_enabled=1" >> "$CONFDIR/hostapd.conf"
     fi
 
@@ -1983,11 +2127,11 @@ write_dnsmasq_conf() {
     else
         NOBODY_GROUP="nogroup"
     fi
-    
+
     mkfifo "$CONFDIR/dnsmasq.log" || die "Failed creating pipe file for dnsmasq"
     chown nobody "$CONFDIR/dnsmasq.log" || die "Failed changing dnsmasq log file owner"
-    cat "$CONFDIR/dnsmasq.log" & 
-    
+    cat "$CONFDIR/dnsmasq.log" &
+
     cat <<- EOF > "$CONFDIR/dnsmasq.conf"
 		user=nobody
 		group=$NOBODY_GROUP
@@ -2005,7 +2149,7 @@ write_dnsmasq_conf() {
 	EOF
     # 'log-dhcp'(Extra logging for DHCP) shows too much logs.
     # if use '-d', 'log-facility' should = /dev/null
-    if [[ $SHARE_METHOD == "none" ]]; then    
+    if [[ $SHARE_METHOD == "none" ]]; then
         echo "no-resolv"  >> "$CONFDIR/dnsmasq.conf"
         echo "no-poll" >> "$CONFDIR/dnsmasq.conf"
     fi
@@ -2017,7 +2161,7 @@ write_dnsmasq_conf() {
         fi
         echo "dhcp-option-force=option:dns-server,${dns_offer}" >> "$CONFDIR/dnsmasq.conf"
     fi
-    
+
     if [[ ! "$dnsmasq_NO_DNS" -eq 0 ]]; then
         echo "port=0"  >> "$CONFDIR/dnsmasq.conf"
     fi
@@ -2032,7 +2176,7 @@ write_dnsmasq_conf() {
     if [[ ! "$SHOW_DNS_QUERY" -eq 0 ]]; then
         echo log-queries=extra >> "$CONFDIR/dnsmasq.conf"
     fi
-    
+
     if [[ $DNS ]]; then
         DNS_count=$(echo "$DNS" | awk -F, '{print NF}')
         for (( i=1;i<=DNS_count;i++ )); do
@@ -2040,7 +2184,7 @@ write_dnsmasq_conf() {
             [[ "$DNS_PORT" ]] && DNS_PORT_D="#$DNS_PORT"
             echo "server=${DNS_IP}${DNS_PORT_D}" >> "$CONFDIR/dnsmasq.conf"
         done
-        
+
         cat <<- EOF >> "$CONFDIR/dnsmasq.conf"
 			no-resolv
 			no-poll
@@ -2074,7 +2218,7 @@ run_wifi_ap_processes() {
         HAVEGED_WATCHDOG_PID=$!
         echo "$HAVEGED_WATCHDOG_PID" > "$CONFDIR/haveged_watchdog.pid"
         echo
-        echo "haveged_watchdog PID: $HAVEGED_WATCHDOG_PID" 
+        echo "haveged_watchdog PID: $HAVEGED_WATCHDOG_PID"
     fi
 
     # start access point
@@ -2084,14 +2228,14 @@ run_wifi_ap_processes() {
     if [ $? -eq 0 ]; then
         STDBUF_PATH=$STDBUF_PATH" -oL"
     fi
-    echo 
+    echo
     echo "Starting hostapd"
-    
+
     if COMPLAIN_CMD="$(command -v aa-complain || command -v complain)"; then
         echo "Setting hostapd to AppArmor complain mode..."
         "$COMPLAIN_CMD" hostapd
     fi
-    
+
     # hostapd '-P' works only when use '-B' (run in background)
     $STDBUF_PATH hostapd $HOSTAPD_DEBUG_ARGS -P "$CONFDIR/hostapd.pid" "$CONFDIR/hostapd.conf"  &
     HOSTAPD_PID=$!
@@ -2106,17 +2250,17 @@ run_wifi_ap_processes() {
 }
 
 start_dnsmasq() {
-    echo 
+    echo
     echo "Starting dnsmasq"
-    
+
     if COMPLAIN_CMD="$(command -v aa-complain || command -v complain)"; then
         echo "Setting dnsmasq to AppArmor complain mode..."
         "$COMPLAIN_CMD" dnsmasq
     fi
-    
+
     # Using '-d'(no daemon) dnsmasq will not turn into 'nobody'
     # '-x' works only when no '-d'
-    dnsmasq  -k -C "$CONFDIR/dnsmasq.conf" -x "$CONFDIR/dnsmasq.pid" -l "$CONFDIR/dnsmasq.leases" & 
+    dnsmasq  -k -C "$CONFDIR/dnsmasq.conf" -x "$CONFDIR/dnsmasq.pid" -l "$CONFDIR/dnsmasq.leases" &
     #####DNSMASQ_PID=$!         # only when with '-d'
     ######echo "dnsmasq PID: $DNSMASQ_PID"      # only when with '-d'
     i=0; while [[ ! -f "$CONFDIR/dnsmasq.pid" ]]; do
@@ -2125,24 +2269,22 @@ start_dnsmasq() {
         if [[ $i -gt 10 ]]; then die "Couldn't get dnsmasq PID" ; fi
     done
     DNSMASQ_PID="$(cat "$CONFDIR/dnsmasq.pid" )"
-    echo  "dnsmasq PID: $DNSMASQ_PID" 
+    echo  "dnsmasq PID: $DNSMASQ_PID"
     ######(wait $DNSMASQ_PID ; die "dnsmasq failed") &  # wait can't deal with non-child
     pid_watchdog "$DNSMASQ_PID" 9 "dnsmasq failed" &
     sleep 2
 }
 
 check_rfkill_unblock_wifi() {
-    local PHY
     if which rfkill > /dev/null 2>&1 ; then
-        PHY=$(get_interface_phy_device "${SUBNET_IFACE}")
-        [[ -n $PHY ]] && rfkill unblock $(rfkill | grep "$PHY" | awk '{print $1}') >/dev/null 2>&1
+        rfkill unblock $(rfkill | grep "$PHY" | awk '{print $1}') >/dev/null 2>&1
     fi
 }
 
 #=========== Above are functions ======================
 #=========== Executing begin ==============================
 
-# if empty option, show usage and exit 
+# if empty option, show usage and exit
 check_empty_option "$@"
 
 # TODO: are some global variables are still defined in those following code?
@@ -2156,12 +2298,12 @@ parse_user_options "$@"
 
 TMPDIR="$(decide_tmpdir)"
 
-# if user choose to deal with running instances, will output some info then exit after this 
+# if user choose to deal with running instances, will output some info then exit after this
 # NOTE above don't require root
-check_other_functions 
+check_other_functions
 # NOTE below require root
 
-# if user choose to daemonize, will start new background process and exit this 
+# if user choose to daemonize, will start new background process and exit this
 daemonizing_check
 
 # check if wifi will work on this system and user settings
@@ -2217,7 +2359,7 @@ fi
 
 # judge channel availability after changing country code
 if [[ $WIFI_IFACE ]] ; then
-    can_transmit_to_channel "${AP_IFACE}" ${CHANNEL} || die "Your adapter can not transmit to channel ${CHANNEL}, frequency band ${FREQ_BAND}GHz."
+    can_transmit_to_channel "${AP_IFACE}" ${CHANNEL} || die "Your adapter can not transmit to channel ${CHANNEL}, frequency band ${FREQ_BAND}GHz. (Tips: 1. Check usable channels: 'iw phy $PHY info'.  2. Check country code then check again.  )"
 fi
 
 [[ $WIFI_IFACE ]] && write_hostapd_conf
@@ -2253,7 +2395,7 @@ else
     IP_VERs=("4" "6")
 fi
 
-disable_unwanted_forwarding 
+disable_unwanted_forwarding
 
 
 # bring subnet interface up
@@ -2277,36 +2419,36 @@ fi
 if [[ "$SHARE_METHOD" == "none" ]]; then
 
     echo "No Internet sharing"
-    
+
     [[ "$BANLAN" -eq 1 ]] && start_ban_lan
-    
+
 elif [[ "$SHARE_METHOD" == "nat" ]]; then
     [[ "$INTERNET_IFACE" && "$dnsmasq_NO_DNS" -eq 0 ]] && echo -e "\nWARN: You specified Internet interface but this host is providing local DNS. In some unexpected case (eg. mistaken configurations), queries may leak to other interfaces, which you should be aware of.\n" >&2
-    
+
     start_nat
-    
+
     [[ "$BANLAN" -eq 1 ]] && start_ban_lan
-    
+
     echo 1 > "/proc/sys/net/ipv4/ip_forward" || die "Failed enabling system ipv4 forwarding" # TODO maybe uneeded in '--no4' mode
-    
+
     if [[ $IPV6 -eq 1 ]]; then
         echo 1 > "/proc/sys/net/ipv6/conf/all/forwarding" || die "Failed enabling system ipv6 forwarding" # TODO if '-o' used, set only 2 interfaces' bits
     fi
-    
+
     # to enable clients to establish PPTP connections we must
     # load nf_nat_pptp module
     modprobe nf_nat_pptp > /dev/null 2>&1 && echo "Loaded kernel module nf_nat_pptp"
-    
+
 elif [[ "$SHARE_METHOD" == "redsocks" ]]; then
 
     if [[ $IPV6 -eq 1 ]]; then
         echo 1 > "/proc/sys/net/ipv6/conf/$SUBNET_IFACE/forwarding" || die "Failed enabling $SUBNET_IFACE ipv6 forwarding" # to set NA router bit
     fi
-    
+
     [[ "$dnsmasq_NO_DNS" -eq 0 && ! $DNS ]] &&  echo -e "\nWARN: You are using in transparent proxy mode but this host is providing local DNS. In some unexpected case (eg. mistaken configurations), queries may leak to other interfaces, which you should be aware of.\n" >&2
 
     [[ "$BANLAN" -eq 1 ]] && start_ban_lan
-    
+
     start_redsocks
 fi
 
@@ -2325,7 +2467,7 @@ echo ""
 is_firewalld_running && firewalld_add_tmpzone
 
 
-echo 
+echo
 echo "== Setting up completed, now linux-router should be working =="
 
 #============================================================

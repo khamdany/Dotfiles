@@ -21,10 +21,10 @@ bindsym $mod+alt+l exec 'swaylock -f -i $HOME/Pictures/images_dark/1920x1080.png
 bindsym --release control+alt+d exec dunstctl history-pop
 
 
-bindsym --release print exec grimshot --notify copy screen
-bindsym --release print+s exec grimshot --notify save screen "$HOME/Pictures/Screenshot_$(date +'%Y-%m-%d_%H-%M-%S').png"
-bindsym --release print+shift+c exec grimshot --notify copy anything "$HOME/Pictures/Screenshot_$(date +'%Y-%m-%d_%H-%M-%S').png"
-bindsym --release Print+Shift+s exec grimshot --notify save anything "$HOME/Pictures/Screenshot_$(date +'%Y-%m-%d_%H-%M-%S').png"
+bindsym --release print exec /usr/share/sway-contrib/grimshot/grimshot --notify copy screen
+bindsym --release print+s exec /usr/share/sway-contrib/grimshot/grimshot --notify save screen "$HOME/Pictures/Screenshot_$(date +'%Y-%m-%d_%H-%M-%S').png"
+bindsym --release print+shift+c exec /usr/share/sway-contrib/grimshot/grimshot --notify copy anything "$HOME/Pictures/Screenshot_$(date +'%Y-%m-%d_%H-%M-%S').png"
+bindsym --release Print+Shift+s exec /usr/share/sway-contrib/grimshot/grimshot --notify save anything "$HOME/Pictures/Screenshot_$(date +'%Y-%m-%d_%H-%M-%S').png"
 
 set $screenrecorder `bash $HOME/scripts/toggle-screen-recorder.sh`
 bindsym  --to-code $mod+Shift+R exec $screenrecorder

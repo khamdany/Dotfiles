@@ -1,7 +1,7 @@
 [Added Associations]
 application/json=userapp-kitty helix -C1L022.desktop;
 application/octet-stream=helix.desktop;
-application/pdf=flatpak-3.desktop;flatpak-2.desktop;flatpak.desktop;firefox.desktop;
+application/pdf=librewolf.desktop;flatpak-3.desktop;flatpak-2.desktop;flatpak.desktop;firefox.desktop;
 application/vnd.adobe.flash.movie=ruffle.desktop;
 application/vnd.rar=org.kde.ark.desktop;
 application/x-shellscript=userapp-kitty helix %f-EOUE32.desktop;
@@ -9,7 +9,7 @@ application/x-zerosize=helix.desktop;userapp-helix -A0IY22.desktop;
 application/zip=org.kde.ark.desktop;
 image/gif=sxiv-4.desktop;feh-9.desktop;
 image/jpeg=sxiv-5.desktop;feh-8.desktop;feh-7.desktop;
-image/png=sxiv-3.desktop;sxiv-2.desktop;feh-3.desktop;feh-2.desktop;
+image/png=feh-3.desktop;feh-2.desktop;sxiv-3.desktop;sxiv-2.desktop;
 image/webp=sxiv-6.desktop;
 inode/directory=vlc.desktop;kitty-open.desktop;thunar.desktop;
 text/html=firefox.desktop;helix.desktop;
@@ -22,23 +22,25 @@ x-scheme-handler/tonsite=org.telegram.desktop._eed93c1cf26b8126aa3fabbeb50b4559.
 
 [Default Applications]
 application/octet-stream=helix.desktop
-application/pdf=flatpak-3.desktop;
+application/pdf=librewolf.desktop;
 application/vnd.adobe.flash.movie=ruffle.desktop;
 application/vnd.rar=org.kde.ark.desktop;
 application/x-zerosize=userapp-helix -A0IY22.desktop
 application/zip=org.kde.ark.desktop;
 image/gif=sxiv-4.desktop;
 image/jpeg=sxiv-5.desktop;
-image/png=sxiv-3.desktop;
+image/png=feh-3.desktop;
 image/webp=sxiv-6.desktop;
 message/rfc822=userapp-Thunderbird-VRUN22.desktop
 text/plain=userapp-kitty helix %f-EOUE32.desktop
 text/x-log=userapp-kitty helix %f-EOUE32.desktop
 video/mp4=vlc-2.desktop;
 x-scheme-handler/discord-1216669957799018608=discord-1216669957799018608.desktop
+x-scheme-handler/gale=gale-handler.desktop
 x-scheme-handler/magnet=Motrix.desktop
 x-scheme-handler/mailto=userapp-Thunderbird-VRUN22.desktop
 x-scheme-handler/mid=userapp-Thunderbird-VRUN22.desktop
 x-scheme-handler/mo=Motrix.desktop
 x-scheme-handler/motrix=Motrix.desktop
+x-scheme-handler/ror2mm=gale-handler.desktop
 x-scheme-handler/tonsite=org.telegram.desktop._eed93c1cf26b8126aa3fabbeb50b4559.desktop

@@ -11,9 +11,8 @@ PS1='[\u@\h \W]\$ '
 
 eval $(dircolors ~/.dircolors)
 source $HOME/scripts/bash_alias.sh
-source $HOME/scripts/bash_export.sh
+$HOME/scripts/bash_export.sh
 # eval "$(starship init bash)"
  source ~/.local/share/blesh/ble.sh
 [[ ${BLE_VERSION-} ]] && ble-attach
-export PATH=/home/thinkpad/.local/bin:/opt/flutter/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/opt/android-sdk/platform-tools:/home/thinkpad/.local/share/flatpak/exports/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/usr/lib/rustup/bin:/home/thinkpad/Personal/program/android/android-sdk/platform-tools:/usr/local/go/bin
 export __GLX_VENDOR_LIBRARY_NAME=NVIDIA

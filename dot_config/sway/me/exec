@@ -8,3 +8,4 @@ exec kbuildsycoca6
 exec fcitx5
 exec ydotoold
 exec /home/thinkpad/scripts/bluetooth-play.sh
+exec nm-applet
